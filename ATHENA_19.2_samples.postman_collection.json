@@ -1392,9 +1392,9 @@
 							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_UpdateServiceNotifRQ xmlns=\"http://www.iata.org/IATA/2015/00/2018.2/IATA_UpdateServiceNotifRQ\">\n\t<Party>\n\t\t<Sender>\n\t\t\t<TravelAgency>\n\t\t\t\t<AgencyID>{{AGENCY_ID}}</AgencyID>\n\t\t\t\t<IATANumber>12312312</IATANumber>\n\t\t\t\t<Name>JR TECHNOLOGIES</Name>\n\t\t\t</TravelAgency>\n\t\t</Sender>\n\t</Party>\n\t<PayloadAttributes>\n\t\t<EchoTokenText>{{$guid}}</EchoTokenText>\n\t\t<Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\n\t\t<TrxID>transaction{{$randomInt}}</TrxID>\n\t\t<VersionNumber>2018.2</VersionNumber>\n\t</PayloadAttributes>\n\t<Request>\n\t\t<Order>\n\t\t\t<OrderID>XXX5QE84QLX</OrderID>\n\t\t\t<OrderItem>\n\t\t\t\t<OrderItemID>ORDERITEM1</OrderItemID>\n\t\t\t\t<Service>\n\t\t\t\t\t<DeliveryProvider>\n\t\t\t\t\t\t<ID>{{AIRLINE_ID}}</ID>\n\t\t\t\t\t\t<Name>God</Name>\n\t\t\t\t\t</DeliveryProvider>\n\t\t\t\t\t<DeliveryStatusCode>READY TO DELIVER</DeliveryStatusCode>\n\t\t\t\t\t<ServiceID>SV_1_1_SV_BCN_3000_EFO_Pax1_SEG_BCNCDG_4_Pax1_XXX5QE84QLX_8262970d-f320-4ce7-a53a-33bdc7e6935c</ServiceID>\n\t\t\t\t</Service>\n\t\t\t</OrderItem>\n\t\t</Order>\n\t</Request>\n</IATA_UpdateServiceNotifRQ>\n"
 						},
 						"url": {
-							"raw": "{{NDC_ENDPOINT}}",
+							"raw": "{{ONE_ORDER_ENDPOINT}}",
 							"host": [
-								"{{NDC_ENDPOINT}}"
+								"{{ONE_ORDER_ENDPOINT}}"
 							]
 						}
 					},
@@ -1419,9 +1419,9 @@
 							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<IATA_ServiceDeliveryRQ xmlns=\"http://www.iata.org/IATA/2015/00/2018.2/IATA_ServiceDeliveryRQ\">\r\n\t<PayloadAttributes>\r\n\t\t<EchoTokenText>{{$guid}}</EchoTokenText>\r\n\t\t<Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\r\n\t\t<TrxID>transaction{{$randomInt}}</TrxID>\r\n\t\t<VersionNumber>2018.2</VersionNumber>\r\n\t</PayloadAttributes>\r\n\t<Request>\r\n\t\t<PaxSegment>\r\n\t\t\t<OperatingCarrierInfo>\r\n\t\t\t\t<CarrierDesigCode>{{AIRLINE_ID}}</CarrierDesigCode>\r\n\t\t\t\t<DatedOperatingLeg>\r\n\t\t\t\t\t<Arrival>\r\n\t\t\t\t\t\t<IATALocationCode>FRA</IATALocationCode>\r\n\t\t\t\t\t</Arrival>\r\n\t\t\t\t\t<Dep>\r\n\t\t\t\t\t\t<AircraftScheduledDateTime>2019-03-26T11:50:00</AircraftScheduledDateTime>\r\n\t\t\t\t\t\t<IATALocationCode>LHR</IATALocationCode>\r\n\t\t\t\t\t</Dep>\r\n\t\t\t\t</DatedOperatingLeg>\r\n\t\t\t</OperatingCarrierInfo>\r\n\t\t</PaxSegment>\r\n\t</Request>\r\n</IATA_ServiceDeliveryRQ>\r\n"
 						},
 						"url": {
-							"raw": "{{NDC_ENDPOINT}}",
+							"raw": "{{ONE_ORDER_ENDPOINT}}",
 							"host": [
-								"{{NDC_ENDPOINT}}"
+								"{{ONE_ORDER_ENDPOINT}}"
 							]
 						}
 					},
@@ -1446,9 +1446,9 @@
 							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<IATA_ServiceDeliveryRQ xmlns=\"http://www.iata.org/IATA/2015/00/2018.2/IATA_ServiceDeliveryRQ\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n\t<PayloadAttributes>\r\n\t\t<EchoTokenText>{{$guid}}</EchoTokenText>\r\n\t\t<Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\r\n\t\t<TrxID>transaction{{$randomInt}}</TrxID>\r\n\t\t<VersionNumber>2018.2</VersionNumber>\r\n\t</PayloadAttributes>\r\n\t<Request>\r\n\t\t<PaxSegment>\r\n\t\t\t<OperatingCarrierInfo>\r\n\t\t\t\t<CarrierDesigCode>{{AIRLINE_ID}}</CarrierDesigCode>\r\n\t\t\t\t<DatedOperatingLeg>\r\n\t\t\t\t\t<Arrival>\r\n\t\t\t\t\t\t<IATALocationCode>FRA</IATALocationCode>\r\n\t\t\t\t\t</Arrival>\r\n\t\t\t\t\t<Dep>\r\n\t\t\t\t\t\t<AircraftScheduledDateTime>2019-03-26T11:50:00</AircraftScheduledDateTime>\r\n\t\t\t\t\t</Dep>\r\n\t\t\t\t</DatedOperatingLeg>\r\n\t\t\t\t<OperatingCarrierFlightNumberText>168</OperatingCarrierFlightNumberText>\r\n\t\t\t</OperatingCarrierInfo>\r\n\t\t</PaxSegment>\r\n\t</Request>\r\n</IATA_ServiceDeliveryRQ>\r\n"
 						},
 						"url": {
-							"raw": "{{NDC_ENDPOINT}}",
+							"raw": "{{ONE_ORDER_ENDPOINT}}",
 							"host": [
-								"{{NDC_ENDPOINT}}"
+								"{{ONE_ORDER_ENDPOINT}}"
 							]
 						}
 					},
@@ -1473,9 +1473,9 @@
 							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<IATA_ServiceStatusChangeNotifRQ xmlns=\"http://www.iata.org/IATA/2015/00/2018.2/IATA_ServiceStatusChangeNotifRQ\">\r\n\t<Party>\r\n\t\t<Sender>\r\n\t\t\t<TravelAgency>\r\n\t\t\t\t<AgencyID>{{AGENCY_ID}}</AgencyID>\r\n\t\t\t\t<IATANumber>12312312</IATANumber>\r\n\t\t\t\t<Name>JR TECHNOLOGIES</Name>\r\n\t\t\t</TravelAgency>\r\n\t\t</Sender>\r\n\t</Party>\r\n\t<PayloadAttributes>\r\n\t\t<EchoTokenText>{{$guid}}</EchoTokenText>\r\n\t\t<Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\r\n\t\t<TrxID>transaction{{$randomInt}}</TrxID>\r\n\t\t<VersionNumber>2018.2</VersionNumber>\r\n\t</PayloadAttributes>\r\n\t<Request>\r\n\t\t<Order>\r\n\t\t\t<OrderID>XXX5QE84QLX</OrderID>\r\n\t\t\t<OrderItem>\r\n\t\t\t\t<OrderItemID>ORDERITEM1</OrderItemID>\r\n\t\t\t\t<Service>\r\n\t\t\t\t\t<DeliveryProvider>\r\n\t\t\t\t\t\t<ID>{{AIRLINE_ID}}</ID>\r\n\t\t\t\t\t\t<Name>Gods Air</Name>\r\n\t\t\t\t\t</DeliveryProvider>\r\n\t\t\t\t\t<DeliveryStatusCode>IN PROGRESS</DeliveryStatusCode>\r\n\t\t\t\t\t<ServiceID>SV_1_1_SV_BCN_3000_EFO_Pax1_SEG_BCNCDG_4_Pax1_XXX5QE84QLX_8262970d-f320-4ce7-a53a-33bdc7e6935c</ServiceID>\r\n\t\t\t\t</Service>\r\n\t\t\t</OrderItem>\r\n\t\t</Order>\r\n\t</Request>\r\n</IATA_ServiceStatusChangeNotifRQ>\r\n"
 						},
 						"url": {
-							"raw": "{{NDC_ENDPOINT}}",
+							"raw": "{{ONE_ORDER_ENDPOINT}}",
 							"host": [
-								"{{NDC_ENDPOINT}}"
+								"{{ONE_ORDER_ENDPOINT}}"
 							]
 						}
 					},
@@ -1487,9 +1487,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{NDC_ENDPOINT}}/OrderSalesInformationNotif/2582e80059694898a22cf459dad2d336",
+							"raw": "{{ONE_ORDER_ENDPOINT}}/OrderSalesInformationNotif/2582e80059694898a22cf459dad2d336",
 							"host": [
-								"{{NDC_ENDPOINT}}"
+								"{{ONE_ORDER_ENDPOINT}}"
 							],
 							"path": [
 								"OrderSalesInformationNotif",
