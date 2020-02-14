@@ -1,0 +1,1685 @@
+{
+	"info": {
+		"_postman_id": "cd657f67-8c33-4554-aed6-fdcef23fcd99",
+		"name": "Sandbox 19.2 - none-combine - v5 12-02-20",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "00 - Roundtrip 1ADT 1CHD",
+			"item": [
+				{
+					"name": "AirShoppingRQ Roundtrip - 1ADT 1CHD",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_AirShoppingRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_AirShoppingRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <PayloadAttributes>\n        <EchoTokenText>{{$guid}}</EchoTokenText>\n        <Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\n        <TrxID>transaction{{$randomInt}}</TrxID>\n        <VersionNumber>2019.2</VersionNumber>\n    </PayloadAttributes>\n    <POS>\n        <City>\n            <IATA_LocationCode>ATH</IATA_LocationCode>\n        </City>\n        <Country>\n            <CountryCode>GR</CountryCode>\n        </Country>\n        <RequestTime>2018-10-12T07:38:00</RequestTime>\n    </POS>\n    <Request>\n        <FlightCriteria>\n            <OriginDestCriteria>\n                <DestArrivalCriteria>\n                    <IATA_LocationCode>LHR</IATA_LocationCode>\n                </DestArrivalCriteria>\n                <OriginDepCriteria>\n                    <Date>2020-06-20</Date>\n                    <IATA_LocationCode>BCN</IATA_LocationCode>\n                </OriginDepCriteria>\n            </OriginDestCriteria>\n            <OriginDestCriteria>\n                <DestArrivalCriteria>\n                    <IATA_LocationCode>BCN</IATA_LocationCode>\n                </DestArrivalCriteria>\n                <OriginDepCriteria>\n                    <Date>2020-06-27</Date>\n                    <IATA_LocationCode>LHR</IATA_LocationCode>\n                </OriginDepCriteria>\n                <PreferredCabinType>\n                    <CabinTypeCode>M</CabinTypeCode>\n                </PreferredCabinType>\n            </OriginDestCriteria>\n        </FlightCriteria>\n        <Paxs>\n            <Pax>\n                <PaxID>Pax1</PaxID>\n                <PTC>ADT</PTC>\n            </Pax>\n            <Pax>\n                <PaxID>Pax2</PaxID>\n                <PTC>CHD</PTC>\n            </Pax>\n        </Paxs>\n        <ShoppingCriteria>\n            <CabinTypeCriteria>\n                <CabinTypeCode>M</CabinTypeCode>\n            </CabinTypeCriteria>\n        </ShoppingCriteria>\n    </Request>\n</IATA_AirShoppingRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OrderCreateRQ Roundtrip - 1ADT 1CHD",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_OrderCreateRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_OrderCreateRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <PayloadAttributes>\n        <EchoTokenText>{{$guid}}</EchoTokenText>\n        <Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\n        <TrxID>transaction{{$randomInt}}</TrxID>\n        <VersionNumber>2019.2</VersionNumber>\n    </PayloadAttributes>\n    <POS>\n        <City>\n            <IATA_LocationCode>ATH</IATA_LocationCode>\n        </City>\n        <Country>\n            <CountryCode>GR</CountryCode>\n        </Country>\n        <RequestTime>2018-10-12T07:38:00</RequestTime>\n    </POS>\n    <Request>\n        <CreateOrder>\n            <SelectedOffer>\n                <OfferRefID>OFFER1</OfferRefID>\n                <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n                <SelectedOfferItem>\n                    <OfferItemRefID>OFFERITEM1_1</OfferItemRefID>\n                    <PaxRefID>Pax2</PaxRefID>\n                </SelectedOfferItem>\n                <SelectedOfferItem>\n                    <OfferItemRefID>OFFERITEM1_2</OfferItemRefID>\n                    <PaxRefID>Pax1</PaxRefID>\n                </SelectedOfferItem>\n                <ShoppingResponseRefID>201-2854d1876cd343c9aa78bb60b2afd4a8</ShoppingResponseRefID>\n            </SelectedOffer>\n            <SelectedOffer>\n                <OfferRefID>OFFER79</OfferRefID>\n                <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n                <SelectedOfferItem>\n                    <OfferItemRefID>OFFERITEM79_1</OfferItemRefID>\n                    <PaxRefID>Pax2</PaxRefID>\n                </SelectedOfferItem>\n                <SelectedOfferItem>\n                    <OfferItemRefID>OFFERITEM79_2</OfferItemRefID>\n                    <PaxRefID>Pax1</PaxRefID>\n                </SelectedOfferItem>\n                <ShoppingResponseRefID>201-2854d1876cd343c9aa78bb60b2afd4a8</ShoppingResponseRefID>\n            </SelectedOffer>\n        </CreateOrder>\n        <DataLists>\n            <ContactInfoList>\n                <ContactInfo>\n                    <ContactInfoID>Pax1_CNT</ContactInfoID>\n                    <EmailAddress>\n                        <EmailAddressText>j.smithas@mail.com</EmailAddressText>\n                    </EmailAddress>\n                </ContactInfo>\n                <ContactInfo>\n                    <ContactInfoID>Pax2_CNT</ContactInfoID>\n                    <EmailAddress>\n                        <EmailAddressText>t.smithas@mail.com</EmailAddressText>\n                    </EmailAddress>\n                </ContactInfo>\n            </ContactInfoList>\n            <PaxList>\n                <Pax>\n                    <ContactInfoRefID>Pax1_CNT</ContactInfoRefID>\n                    <Individual>\n                        <GivenName>Johan</GivenName>\n                        <IndividualID>IND_Pax1</IndividualID>\n                        <Surname>Smithas</Surname>\n                        <TitleName>Mr</TitleName>\n                    </Individual>\n                    <LoyaltyProgramAccount>\n                        <AccountNumber>00034642464</AccountNumber>\n                        <LoyaltyProgram>\n                            <ProgramName>TEST</ProgramName>\n                        </LoyaltyProgram>\n                    </LoyaltyProgramAccount>\n                    <PaxID>Pax1</PaxID>\n                    <PTC>ADT</PTC>\n                </Pax>\n                <Pax>\n                    <ContactInfoRefID>Pax2_CNT</ContactInfoRefID>\n                    <Individual>\n                        <Birthdate>2015-11-22</Birthdate>\n                        <GenderCode>M</GenderCode>\n                        <GivenName>Tom</GivenName>\n                        <IndividualID>IND_Pax2</IndividualID>\n                        <Surname>Smithas</Surname>\n                    </Individual>\n                    <PaxID>Pax2</PaxID>\n                    <PTC>CHD</PTC>\n                </Pax>\n            </PaxList>\n        </DataLists>\n        <PaymentFunctions>\n            <PaymentProcessingDetails>\n                <Amount CurCode=\" USD\">1312.78</Amount>\n                <PaymentMethod>\n                    <Cash/>\n                </PaymentMethod>\n                <TypeCode>CA</TypeCode>\n            </PaymentProcessingDetails>\n        </PaymentFunctions>\n    </Request>\n</IATA_OrderCreateRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "01 - OneWay 1ADT",
+			"item": [
+				{
+					"name": "AirShoppingRQ",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_AirShoppingRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_AirShoppingRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <PayloadAttributes>\n        <EchoTokenText>{{$guid}}</EchoTokenText>\n        <Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\n        <TrxID>transaction{{$randomInt}}</TrxID>\n        <VersionNumber>2019.2</VersionNumber>\n    </PayloadAttributes>\n    <POS>\n        <City>\n            <IATA_LocationCode>ATH</IATA_LocationCode>\n        </City>\n        <Country>\n            <CountryCode>GR</CountryCode>\n        </Country>\n        <RequestTime>2018-10-12T07:38:00</RequestTime>\n    </POS>\n    <Request>\n        <FlightCriteria>\n            <OriginDestCriteria>\n                <DestArrivalCriteria>\n                    <IATA_LocationCode>LHR</IATA_LocationCode>\n                </DestArrivalCriteria>\n                <OriginDepCriteria>\n                    <Date>2020-06-20</Date>\n                    <IATA_LocationCode>BCN</IATA_LocationCode>\n                </OriginDepCriteria>\n            </OriginDestCriteria>\n        </FlightCriteria>\n        <Paxs>\n            <Pax>\n                <PaxID>Pax1</PaxID>\n                <PTC>ADT</PTC>\n            </Pax>\n        </Paxs>\n        <ShoppingCriteria>\n            <CabinTypeCriteria>\n                <CabinTypeCode>M</CabinTypeCode>\n            </CabinTypeCriteria>\n        </ShoppingCriteria>\n    </Request>\n</IATA_AirShoppingRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OrderCreateRQ - flight only",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_OrderCreateRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_OrderCreateRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <PayloadAttributes>\n        <EchoTokenText>{{$guid}}</EchoTokenText>\n        <Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\n        <TrxID>transaction{{$randomInt}}</TrxID>\n        <VersionNumber>2019.2</VersionNumber>\n    </PayloadAttributes>\n    <POS>\n        <City>\n            <IATA_LocationCode>ATH</IATA_LocationCode>\n        </City>\n        <Country>\n            <CountryCode>GR</CountryCode>\n        </Country>\n        <RequestTime>2018-10-12T07:38:00</RequestTime>\n    </POS>\n    <Request>\n        <CreateOrder>\n            <SelectedOffer>\n                <OfferRefID>OFFER1</OfferRefID>\n                <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n                <SelectedOfferItem>\n                    <OfferItemRefID>OFFERITEM1_1</OfferItemRefID>\n                    <PaxRefID>Pax1</PaxRefID>\n                </SelectedOfferItem>\n                <ShoppingResponseRefID>201-da2ea041c6ce403b9c2d3cdb4fa42b31</ShoppingResponseRefID>\n            </SelectedOffer>\n        </CreateOrder>\n        <DataLists>\n            <ContactInfoList>\n                <ContactInfo>\n                    <ContactInfoID>Pax1_CNT</ContactInfoID>\n                    <EmailAddress>\n                        <EmailAddressText>j.smithas@mail.com</EmailAddressText>\n                    </EmailAddress>\n                </ContactInfo>\n            </ContactInfoList>\n            <PaxList>\n                <Pax>\n                    <ContactInfoRefID>Pax1_CNT</ContactInfoRefID>\n                    <Individual>\n                        <GivenName>Johan</GivenName>\n                        <IndividualID>IND_Pax1</IndividualID>\n                        <Surname>Smithas</Surname>\n                        <TitleName>Mr</TitleName>\n                    </Individual>\n                    <PaxID>Pax1</PaxID>\n                    <PTC>ADT</PTC>\n                </Pax>\n            </PaxList>\n        </DataLists>\n        <PaymentFunctions>\n            <PaymentProcessingDetails>\n                <Amount CurCode=\" USD\">418.29</Amount>\n                <PaymentMethod>\n                    <Cash/>\n                </PaymentMethod>\n                <TypeCode>CA</TypeCode>\n            </PaymentProcessingDetails>\n        </PaymentFunctions>\n    </Request>\n</IATA_OrderCreateRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OrderCreateRQ - with aLaCarte",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_OrderCreateRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_OrderCreateRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <POS>\n        <City>\n            <IATA_LocationCode>ATH</IATA_LocationCode>\n        </City>\n        <Country>\n            <CountryCode>GR</CountryCode>\n        </Country>\n        <RequestTime>2018-10-12T07:38:00</RequestTime>\n    </POS>\n    <Request>\n        <CreateOrder>\n            <SelectedOffer>\n                <OfferRefID>OFFER1</OfferRefID>\n                <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n                <SelectedOfferItem>\n                    <OfferItemRefID>OFFERITEM1_1</OfferItemRefID>\n                    <PaxRefID>Pax1</PaxRefID>\n                </SelectedOfferItem>\n                <ShoppingResponseRefID>201-da2ea041c6ce403b9c2d3cdb4fa42b31</ShoppingResponseRefID>\n            </SelectedOffer>\n            <SelectedOffer>\n                <OfferRefID>ALACARTEOFFER1</OfferRefID>\n                <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n                <SelectedOfferItem>\n                    <OfferItemRefID>ALACARTEOFFERITEM1</OfferItemRefID>\n                    <PaxRefID>Pax1</PaxRefID>\n                    <SelectedALaCarteOfferItem>\n                        <FlightAssociations>\n                            <PaxSegmentRefID>SEG_BCNCDG_4</PaxSegmentRefID>\n                        </FlightAssociations>\n                        <Qty>1</Qty>\n                    </SelectedALaCarteOfferItem>\n                </SelectedOfferItem>\n                <ShoppingResponseRefID>201-da2ea041c6ce403b9c2d3cdb4fa42b31</ShoppingResponseRefID>\n            </SelectedOffer>\n        </CreateOrder>\n        <DataLists>\n            <ContactInfoList>\n                <ContactInfo>\n                    <ContactInfoID>Pax1_CNT</ContactInfoID>\n                    <EmailAddress>\n                        <EmailAddressText>j.smithas@mail.com</EmailAddressText>\n                    </EmailAddress>\n                </ContactInfo>\n            </ContactInfoList>\n            <PaxList>\n                <Pax>\n                    <ContactInfoRefID>Pax1_CNT</ContactInfoRefID>\n                    <Individual>\n                        <GivenName>Johan</GivenName>\n                        <IndividualID>IND_Pax1</IndividualID>\n                        <Surname>Smithas</Surname>\n                        <TitleName>Mr</TitleName>\n                    </Individual>\n                    <LoyaltyProgramAccount>\n                        <AccountNumber>00034642464</AccountNumber>\n                        <LoyaltyProgram/>\n                    </LoyaltyProgramAccount>\n                    <PaxID>Pax1</PaxID>\n                    <PTC>ADT</PTC>\n                </Pax>\n            </PaxList>\n        </DataLists>\n        <PaymentFunctions>\n            <PaymentProcessingDetails>\n                <Amount CurCode=\" USD\">43.29</Amount>\n                <PaymentMethod>\n                    <Cash/>\n                </PaymentMethod>\n                <TypeCode>CA</TypeCode>\n            </PaymentProcessingDetails>\n        </PaymentFunctions>\n    </Request>\n</IATA_OrderCreateRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OrderCreateRQ - with aLaCartes mulitple quantity",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_OrderCreateRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_OrderCreateRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <POS>\n        <City>\n            <IATA_LocationCode>ATH</IATA_LocationCode>\n        </City>\n        <Country>\n            <CountryCode>GR</CountryCode>\n        </Country>\n        <RequestTime>2018-10-12T07:38:00</RequestTime>\n    </POS>\n    <Request>\n        <CreateOrder>\n            <SelectedOffer>\n                <OfferRefID>OFFER1</OfferRefID>\n                <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n                <SelectedOfferItem>\n                    <OfferItemRefID>OFFERITEM1_1</OfferItemRefID>\n                    <PaxRefID>Pax1</PaxRefID>\n                </SelectedOfferItem>\n                <ShoppingResponseRefID>201-0a7308465fd04d75b041c8b24572acba</ShoppingResponseRefID>\n            </SelectedOffer>\n            <SelectedOffer>\n                <OfferRefID>ALACARTEOFFER1</OfferRefID>\n                <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n                <SelectedOfferItem>\n                    <OfferItemRefID>ALACARTEOFFERITEM3</OfferItemRefID>\n                    <PaxRefID>Pax1</PaxRefID>\n                    <SelectedALaCarteOfferItem>\n                        <FlightAssociations>\n                            <PaxSegmentRefID>SEG_BCNCDG_4</PaxSegmentRefID>\n                        </FlightAssociations>\n                        <Qty>3</Qty>\n                    </SelectedALaCarteOfferItem>\n                </SelectedOfferItem>\n                <ShoppingResponseRefID>201-0a7308465fd04d75b041c8b24572acba</ShoppingResponseRefID>\n            </SelectedOffer>\n        </CreateOrder>\n        <DataLists>\n            <ContactInfoList>\n                <ContactInfo>\n                    <ContactInfoID>Pax1_CNT</ContactInfoID>\n                    <EmailAddress>\n                        <EmailAddressText>j.smithas@mail.com</EmailAddressText>\n                    </EmailAddress>\n                </ContactInfo>\n            </ContactInfoList>\n            <PaxList>\n                <Pax>\n                    <ContactInfoRefID>Pax1_CNT</ContactInfoRefID>\n                    <Individual>\n                        <GivenName>Johan</GivenName>\n                        <IndividualID>IND_Pax1</IndividualID>\n                        <Surname>Smithas</Surname>\n                        <TitleName>Mr</TitleName>\n                    </Individual>\n                    <LoyaltyProgramAccount>\n                        <AccountNumber>00034642464</AccountNumber>\n                        <LoyaltyProgram/>\n                    </LoyaltyProgramAccount>\n                    <PaxID>Pax1</PaxID>\n                    <PTC>ADT</PTC>\n                </Pax>\n            </PaxList>\n        </DataLists>\n        <PaymentFunctions>\n            <PaymentProcessingDetails>\n                <Amount CurCode=\" USD\">692.94</Amount>\n                <PaymentMethod>\n                    <Cash/>\n                </PaymentMethod>\n                <TypeCode>CA</TypeCode>\n            </PaymentProcessingDetails>\n        </PaymentFunctions>\n    </Request>\n</IATA_OrderCreateRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "02 - OneWay 1ADT - with aLaCarte from ServiceList",
+			"item": [
+				{
+					"name": "AirShoppingRQ",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_AirShoppingRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_AirShoppingRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <PayloadAttributes>\n        <EchoTokenText>{{$guid}}</EchoTokenText>\n        <Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\n        <TrxID>transaction{{$randomInt}}</TrxID>\n        <VersionNumber>2019.2</VersionNumber>\n    </PayloadAttributes>\n    <POS>\n        <City>\n            <IATA_LocationCode>ATH</IATA_LocationCode>\n        </City>\n        <Country>\n            <CountryCode>GR</CountryCode>\n        </Country>\n        <RequestTime>2018-10-12T07:38:00</RequestTime>\n    </POS>\n    <Request>\n        <FlightCriteria>\n            <OriginDestCriteria>\n                <DestArrivalCriteria>\n                    <IATA_LocationCode>LHR</IATA_LocationCode>\n                </DestArrivalCriteria>\n                <OriginDepCriteria>\n                    <Date>2020-06-20</Date>\n                    <IATA_LocationCode>BCN</IATA_LocationCode>\n                </OriginDepCriteria>\n            </OriginDestCriteria>\n        </FlightCriteria>\n        <Paxs>\n            <Pax>\n                <PaxID>Pax1</PaxID>\n                <PTC>ADT</PTC>\n            </Pax>\n        </Paxs>\n        <ShoppingCriteria>\n            <CabinTypeCriteria>\n                <CabinTypeCode>M</CabinTypeCode>\n            </CabinTypeCriteria>\n        </ShoppingCriteria>\n    </Request>\n</IATA_AirShoppingRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ServiceListRQ  - FlightSegment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_ServiceListRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_ServiceListRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <PayloadAttributes>\n        <EchoTokenText>{{$guid}}</EchoTokenText>\n        <Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\n        <TrxID>transaction{{$randomInt}}</TrxID>\n        <VersionNumber>2019.2</VersionNumber>\n    </PayloadAttributes>\n    <POS>\n        <City>\n            <IATA_LocationCode>ATH</IATA_LocationCode>\n        </City>\n        <Country>\n            <CountryCode>GR</CountryCode>\n        </Country>\n        <RequestTime>2018-10-12T07:38:00</RequestTime>\n    </POS>\n    <Request>\n        <CoreRequest>\n            <OriginDest>\n                <DestStationCode/>\n                <OriginStationCode/>\n                <PaxJourney>\n                    <PaxSegment>\n                        <Arrival>\n                            <AircraftScheduledDateTime TimeZoneCode=\" USDope/Paris\">2020-06-20T09:08:00.000</AircraftScheduledDateTime>\n                            <IATA_LocationCode>CDG</IATA_LocationCode>\n                        </Arrival>\n                        <Dep>\n                            <AircraftScheduledDateTime TimeZoneCode=\" USDope/Madrid\">2020-06-20T07:30:00.000</AircraftScheduledDateTime>\n                            <IATA_LocationCode>BCN</IATA_LocationCode>\n                        </Dep>\n                        <MarketingCarrierInfo>\n                            <CarrierDesigCode>{{AIRLINE_ID}}</CarrierDesigCode>\n                            <MarketingCarrierFlightNumberText>049</MarketingCarrierFlightNumberText>\n                        </MarketingCarrierInfo>\n                    </PaxSegment>\n                </PaxJourney>\n            </OriginDest>\n        </CoreRequest>\n        <Pax>\n            <PaxID>Pax1</PaxID>\n            <PTC>ADT</PTC>\n        </Pax>\n        <ShoppingCriteria>\n            <CabinTypeCriteria>\n                <CabinTypeCode>M</CabinTypeCode>\n            </CabinTypeCriteria>\n        </ShoppingCriteria>\n    </Request>\n</IATA_ServiceListRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OrderCreateRQ - with aLaCarte from ServiceList",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_OrderCreateRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_OrderCreateRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <POS>\n        <City>\n            <IATA_LocationCode>ATH</IATA_LocationCode>\n        </City>\n        <Country>\n            <CountryCode>GR</CountryCode>\n        </Country>\n        <RequestTime>2018-10-12T07:38:00</RequestTime>\n    </POS>\n    <Request>\n        <CreateOrder>\n            <SelectedOffer>\n                <OfferRefID>OFFER1</OfferRefID>\n                <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n                <SelectedOfferItem>\n                    <OfferItemRefID>OFFERITEM1_1</OfferItemRefID>\n                    <PaxRefID>Pax1</PaxRefID>\n                </SelectedOfferItem>\n                <ShoppingResponseRefID>201-db19d871795a4fe28715b8d901ea69b1</ShoppingResponseRefID>\n            </SelectedOffer>\n            <SelectedOffer>\n                <OfferRefID>ALACARTEOFFER1</OfferRefID>\n                <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n                <SelectedOfferItem>\n                    <OfferItemRefID>ALACARTEOFFERITEM2</OfferItemRefID>\n                    <PaxRefID>Pax1</PaxRefID>\n                    <SelectedALaCarteOfferItem>\n                        <FlightAssociations>\n                            <PaxSegmentRefID>SEG_BCNCDG_1</PaxSegmentRefID>\n                        </FlightAssociations>\n                        <Qty>1</Qty>\n                    </SelectedALaCarteOfferItem>\n                </SelectedOfferItem>\n                <ShoppingResponseRefID>217-bcd611e55dd7474aa95f7cbdb18a83bd</ShoppingResponseRefID>\n            </SelectedOffer>\n        </CreateOrder>\n        <DataLists>\n            <ContactInfoList>\n                <ContactInfo>\n                    <ContactInfoID>Pax1_CNT</ContactInfoID>\n                    <EmailAddress>\n                        <EmailAddressText>j.smithas@mail.com</EmailAddressText>\n                    </EmailAddress>\n                </ContactInfo>\n            </ContactInfoList>\n            <PaxList>\n                <Pax>\n                    <ContactInfoRefID>Pax1_CNT</ContactInfoRefID>\n                    <Individual>\n                        <GivenName>Johan</GivenName>\n                        <IndividualID>IND_Pax1</IndividualID>\n                        <Surname>Smithas</Surname>\n                        <TitleName>Mr</TitleName>\n                    </Individual>\n                    <LoyaltyProgramAccount>\n                        <AccountNumber>00034642464</AccountNumber>\n                        <LoyaltyProgram/>\n                    </LoyaltyProgramAccount>\n                    <PaxID>Pax1</PaxID>\n                    <PTC>ADT</PTC>\n                </Pax>\n            </PaxList>\n        </DataLists>\n        <PaymentFunctions>\n            <PaymentProcessingDetails>\n                <Amount CurCode=\" USD\">497.94</Amount>\n                <PaymentMethod>\n                    <Cash/>\n                </PaymentMethod>\n                <TypeCode>CA</TypeCode>\n            </PaymentProcessingDetails>\n        </PaymentFunctions>\n    </Request>\n</IATA_OrderCreateRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "03 - OneWay 1ADT - book and hold",
+			"item": [
+				{
+					"name": "AirShoppingRQ",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<IATA_AirShoppingRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_AirShoppingRQ\">\r\n\t<MessageDoc>\r\n\t\t\t<RefVersionNumber>1.0</RefVersionNumber>\r\n\t</MessageDoc>\r\n\t<Party>\r\n\t\t<Participant>\r\n\t\t\t<Aggregator>\r\n\t\t\t\t<AggregatorID>88888888</AggregatorID>\r\n\t\t\t\t<Name>JR TECHNOLOGIES</Name>\r\n\t\t\t</Aggregator>\r\n\t\t</Participant>\r\n\t\t<Sender>\r\n\t\t\t<TravelAgency>\r\n\t\t\t\t<AgencyID>{{AGENCY_ID}}</AgencyID>\r\n\t\t\t\t<IATA_Number>12312312</IATA_Number>\r\n\t\t\t\t<Name>Gods Travel</Name>\r\n\t\t\t</TravelAgency>\r\n\t\t</Sender>\r\n\t</Party>\r\n\t<PayloadAttributes>\r\n\t\t<EchoTokenText>{{$guid}}</EchoTokenText>\r\n\t\t<Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\r\n\t\t<TrxID>transaction{{$randomInt}}</TrxID>\r\n\t\t<VersionNumber>2019.2</VersionNumber>\r\n\t</PayloadAttributes>\r\n\t<POS>\r\n\t\t<City>\r\n\t\t\t<IATA_LocationCode>ATH</IATA_LocationCode>\r\n\t\t</City>\r\n\t\t<Country>\r\n\t\t\t<CountryCode>GR</CountryCode>\r\n\t\t</Country>\r\n\t\t<RequestTime>2018-10-12T07:38:00</RequestTime>\r\n\t</POS>\r\n\t<Request>\r\n\t\t<FlightCriteria>\r\n\t\t\t<OriginDestCriteria>\r\n\t\t\t\t<DestArrivalCriteria>\r\n\t\t\t\t\t<IATA_LocationCode>LHR</IATA_LocationCode>\r\n\t\t\t\t</DestArrivalCriteria>\r\n\t\t\t\t<OriginDepCriteria>\r\n\t\t\t\t\t<Date>2020-06-20</Date>\r\n\t\t\t\t\t<IATA_LocationCode>BCN</IATA_LocationCode>\r\n\t\t\t\t</OriginDepCriteria>\r\n\t\t\t</OriginDestCriteria>\r\n\t\t</FlightCriteria>\r\n\t\t<Paxs>\r\n\t\t\t<Pax>\r\n\t\t\t\t<PaxID>Pax1</PaxID>\r\n\t\t\t\t<PTC>ADT</PTC>\r\n\t\t\t</Pax>\t\r\n\t\t</Paxs>\r\n\t\t<ShoppingCriteria>\r\n\t\t\t<CabinTypeCriteria>\r\n\t\t\t\t<CabinTypeCode>M</CabinTypeCode>\r\n\t\t\t</CabinTypeCriteria>\r\n\t\t</ShoppingCriteria>\r\n\t</Request>\r\n</IATA_AirShoppingRQ>\r\n"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OrderCreateRQ - book and hold",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_OrderCreateRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_OrderCreateRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <PayloadAttributes>\n        <EchoTokenText>{{$guid}}</EchoTokenText>\n        <Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\n        <TrxID>transaction{{$randomInt}}</TrxID>\n        <VersionNumber>2019.2</VersionNumber>\n    </PayloadAttributes>\n    <POS>\n        <City>\n            <IATA_LocationCode>ATH</IATA_LocationCode>\n        </City>\n        <Country>\n            <CountryCode>GR</CountryCode>\n        </Country>\n        <RequestTime>2018-10-12T07:38:00</RequestTime>\n    </POS>\n    <Request>\n        <CreateOrder>\n            <SelectedOffer>\n                <OfferRefID>OFFER1</OfferRefID>\n                <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n                <SelectedOfferItem>\n                    <OfferItemRefID>OFFERITEM1_1</OfferItemRefID>\n                    <PaxRefID>Pax1</PaxRefID>\n                </SelectedOfferItem>\n                <ShoppingResponseRefID>201-4ec296e23d65430894358c93aa083463</ShoppingResponseRefID>\n            </SelectedOffer>\n        </CreateOrder>\n        <DataLists>\n            <ContactInfoList>\n                <ContactInfo>\n                    <ContactInfoID>Pax1_CNT</ContactInfoID>\n                    <EmailAddress>\n                        <EmailAddressText>j.smithas@mail.com</EmailAddressText>\n                    </EmailAddress>\n                </ContactInfo>\n            </ContactInfoList>\n            <PaxList>\n                <Pax>\n                    <ContactInfoRefID>Pax1_CNT</ContactInfoRefID>\n                    <Individual>\n                        <GivenName>Johan</GivenName>\n                        <IndividualID>IND_Pax1</IndividualID>\n                        <Surname>Snow</Surname>\n                        <TitleName>Mr</TitleName>\n                    </Individual>\n                    <PaxID>Pax1</PaxID>\n                    <PTC>ADT</PTC>\n                </Pax>\n            </PaxList>\n        </DataLists>\n    </Request>\n</IATA_OrderCreateRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OrderChange - confirm booking",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_OrderChangeRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_OrderChangeRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <Request>\n        <ChangeOrder>\n            <AcceptRepricedOrder>\n              </AcceptRepricedOrder>\n        </ChangeOrder>\n        <Order>\n            <OrderID>XXX2A2Q4MFF</OrderID>\n            <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n        </Order>\n        <PaymentFunctions>\n            <PaymentProcessingDetails>\n                <Amount CurCode=\" USD\">1015.24</Amount>\n                <Payer>\n                    <Individual>\n                        <GivenName>Johany</GivenName>\n                        <Surname>Smithas</Surname>\n                        <TitleName>Mr</TitleName>\n                    </Individual>\n                </Payer>\n                <PaymentMethod>\n                    <PaymentCard>\n                        <CardBrandCode>CA</CardBrandCode>\n                        <CardHolderName>Mr. Johan Smithas</CardHolderName>\n                        <CardSecurityCode>123</CardSecurityCode>\n                        <CardSeqNumber>4111111111111</CardSeqNumber>\n                        <ExpirationDate>1122</ExpirationDate>\n                    </PaymentCard>\n                </PaymentMethod>\n                <TypeCode>CC</TypeCode>\n            </PaymentProcessingDetails>\n        </PaymentFunctions>\n    </Request>\n</IATA_OrderChangeRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "04 - OneWay 1ADT - with OfferPrice",
+			"item": [
+				{
+					"name": "AirShoppingRQ",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_AirShoppingRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_AirShoppingRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <PayloadAttributes>\n        <EchoTokenText>{{$guid}}</EchoTokenText>\n        <Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\n        <TrxID>transaction{{$randomInt}}</TrxID>\n        <VersionNumber>2019.2</VersionNumber>\n    </PayloadAttributes>\n    <POS>\n        <City>\n            <IATA_LocationCode>ATH</IATA_LocationCode>\n        </City>\n        <Country>\n            <CountryCode>GR</CountryCode>\n        </Country>\n        <RequestTime>2018-10-12T07:38:00</RequestTime>\n    </POS>\n    <Request>\n        <FlightCriteria>\n            <OriginDestCriteria>\n                <DestArrivalCriteria>\n                    <IATA_LocationCode>LHR</IATA_LocationCode>\n                </DestArrivalCriteria>\n                <OriginDepCriteria>\n                    <Date>2020-06-20</Date>\n                    <IATA_LocationCode>BCN</IATA_LocationCode>\n                </OriginDepCriteria>\n            </OriginDestCriteria>\n        </FlightCriteria>\n        <Paxs>\n            <Pax>\n                <PaxID>Pax1</PaxID>\n                <PTC>ADT</PTC>\n            </Pax>\n        </Paxs>\n        <ShoppingCriteria>\n            <CabinTypeCriteria>\n                <CabinTypeCode>M</CabinTypeCode>\n            </CabinTypeCriteria>\n        </ShoppingCriteria>\n    </Request>\n</IATA_AirShoppingRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OfferPriceRQ",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_OfferPriceRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_OfferPriceRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <POS>\n        <City>\n            <IATA_LocationCode>ATH</IATA_LocationCode>\n        </City>\n        <Country>\n            <CountryCode>GR</CountryCode>\n        </Country>\n        <RequestTime>2018-10-12T07:38:00</RequestTime>\n    </POS>\n    <Request>\n        <DataLists>\n            <PaxList>\n                <Pax>\n                    <Individual>\n                        <GivenName>Johan</GivenName>\n                        <Surname>Smithas</Surname>\n                        <TitleName>Mr</TitleName>\n                    </Individual>\n                    <LoyaltyProgramAccount>\n                        <AccountNumber>1234525525</AccountNumber>\n                    </LoyaltyProgramAccount>\n                    <PaxID>Pax1</PaxID>\n                    <PTC>ADT</PTC>\n                </Pax>\n            </PaxList>\n        </DataLists>\n        <PricedOffer>\n            <SelectedOffer>\n                <OfferRefID>OFFER1</OfferRefID>\n                <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n                <SelectedOfferItem>\n                    <OfferItemRefID>OFFERITEM1_1</OfferItemRefID>\n                    <PaxRefID>Pax1</PaxRefID>\n                </SelectedOfferItem>\n                <ShoppingResponseRefID>201-b8261d5665a4491390ff86d57a8b7d2f</ShoppingResponseRefID>\n            </SelectedOffer>\n        </PricedOffer>\n    </Request>\n</IATA_OfferPriceRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OrderCreateRQ",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_OrderCreateRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_OrderCreateRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <PayloadAttributes>\n        <EchoTokenText>{{$guid}}</EchoTokenText>\n        <Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\n        <TrxID>transaction{{$randomInt}}</TrxID>\n        <VersionNumber>2019.2</VersionNumber>\n    </PayloadAttributes>\n    <POS>\n        <City>\n            <IATA_LocationCode>ATH</IATA_LocationCode>\n        </City>\n        <Country>\n            <CountryCode>GR</CountryCode>\n        </Country>\n        <RequestTime>2018-10-12T07:38:00</RequestTime>\n    </POS>\n    <Request>\n        <CreateOrder>\n            <SelectedOffer>\n                <OfferRefID>OFFER1</OfferRefID>\n                <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n                <SelectedOfferItem>\n                    <OfferItemRefID>OFFERITEM1_1</OfferItemRefID>\n                    <PaxRefID>Pax1</PaxRefID>\n                </SelectedOfferItem>\n                <ShoppingResponseRefID>213-a6539d63bbf1455b99eeea2914b0011c</ShoppingResponseRefID>\n            </SelectedOffer>\n        </CreateOrder>\n        <DataLists>\n            <ContactInfoList>\n                <ContactInfo>\n                    <ContactInfoID>Pax1_CNT</ContactInfoID>\n                    <EmailAddress>\n                        <EmailAddressText>j.smithas@mail.com</EmailAddressText>\n                    </EmailAddress>\n                </ContactInfo>\n            </ContactInfoList>\n            <PaxList>\n                <Pax>\n                    <ContactInfoRefID>Pax1_CNT</ContactInfoRefID>\n                    <Individual>\n                        <GivenName>Johan</GivenName>\n                        <IndividualID>IND_Pax1</IndividualID>\n                        <Surname>Smithas</Surname>\n                        <TitleName>Mr</TitleName>\n                    </Individual>\n                    <PaxID>Pax1</PaxID>\n                    <PTC>ADT</PTC>\n                </Pax>\n            </PaxList>\n        </DataLists>\n        <PaymentFunctions>\n            <PaymentProcessingDetails>\n                <Amount CurCode=\" USD\">418.29</Amount>\n                <PaymentMethod>\n                    <Cash/>\n                </PaymentMethod>\n                <TypeCode>CA</TypeCode>\n            </PaymentProcessingDetails>\n        </PaymentFunctions>\n    </Request>\n</IATA_OrderCreateRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "05 - OrderChange - Add Service (OneWay 1ADT)",
+			"item": [
+				{
+					"name": "ServiceListRQ  - OrderID",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<IATA_ServiceListRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_ServiceListRQ\">\r\n\t<MessageDoc>\r\n\t\t\t<RefVersionNumber>1.0</RefVersionNumber>\r\n\t</MessageDoc>\r\n\t<Party>\r\n\t\t<Participant>\r\n\t\t\t<Aggregator>\r\n\t\t\t\t<AggregatorID>88888888</AggregatorID>\r\n\t\t\t\t<Name>JR TECHNOLOGIES</Name>\r\n\t\t\t</Aggregator>\r\n\t\t</Participant>\r\n\t\t<Sender>\r\n\t\t\t<TravelAgency>\r\n\t\t\t\t<AgencyID>{{AGENCY_ID}}</AgencyID>\r\n\t\t\t\t<IATA_Number>12312312</IATA_Number>\r\n\t\t\t\t<Name>Gods Travel</Name>\r\n\t\t\t</TravelAgency>\r\n\t\t</Sender>\r\n\t</Party>\r\n\t<PayloadAttributes>\r\n\t\t<EchoTokenText>{{$guid}}</EchoTokenText>\r\n\t\t<Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\r\n\t\t<TrxID>transaction{{$randomInt}}</TrxID>\r\n\t\t<VersionNumber>2019.2</VersionNumber>\r\n\t</PayloadAttributes>\r\n\t<POS>\r\n\t\t<City>\r\n\t\t\t<IATA_LocationCode>ATH</IATA_LocationCode>\r\n\t\t</City>\r\n\t\t<Country>\r\n\t\t\t<CountryCode>GR</CountryCode>\r\n\t\t</Country>\r\n\t\t<RequestTime>2018-10-12T07:38:00</RequestTime>\r\n\t</POS>\r\n\t<Request>\r\n\t\t<CoreRequest>\r\n\t\t\t<!-- Request ServiceList with OrderID -->\r\n\t\t\t<Order>\r\n\t\t\t\t<OrderID>XXXF577774E</OrderID>\r\n\t\t\t\t<OrderItem>\r\n\t\t\t\t\t<GrandTotalAmount>00.00</GrandTotalAmount>\r\n\t\t\t\t\t<OwnerCode>{{AIRLINE_ID}}</OwnerCode>\r\n\t\t\t\t</OrderItem>\r\n\t\t\t\t<OwnerCode>{{AIRLINE_ID}}</OwnerCode>\r\n\t\t\t</Order>\r\n\t\t</CoreRequest>\r\n\t</Request>\r\n</IATA_ServiceListRQ>\r\n"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OrderChangeRQ",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_OrderChangeRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_OrderChangeRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <Request>\n        <ChangeOrder>\n            <UpdateOrderItem>\n                <AcceptOffer>\n                    <SelectedOffer>\n                        <OfferRefID>ALACARTEOFFER1</OfferRefID>\n                        <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n                        <!-- Add ALaCarte service-->\n                        <SelectedOfferItem>\n                            <OfferItemRefID>ALACARTEOFFERITEM7</OfferItemRefID>\n                            <PaxRefID>Pax1</PaxRefID>\n                            <SelectedALaCarteOfferItem>\n                                <FlightAssociations>\n                                    <PaxSegmentRefID>SEG_CDGLHR_2</PaxSegmentRefID>\n                                </FlightAssociations>\n                                <Qty>1</Qty>\n                            </SelectedALaCarteOfferItem>\n                        </SelectedOfferItem>\n                        <ShoppingResponseRefID>217-c1ac922f60e044f6b03a9a3e34f52a5c</ShoppingResponseRefID>\n                    </SelectedOffer>\n                </AcceptOffer>\n            </UpdateOrderItem>\n        </ChangeOrder>\n        <DataLists>\n            <ContactInfoList>\n                <ContactInfo>\n                    <ContactInfoID>Pax1_CNT</ContactInfoID>\n                    <EmailAddress>\n                        <EmailAddressText>j.smithas@mail.com</EmailAddressText>\n                    </EmailAddress>\n                </ContactInfo>\n            </ContactInfoList>\n            <PaxList>\n                <Pax>\n                    <ContactInfoRefID>Pax1_CNT</ContactInfoRefID>\n                    <Individual>\n                        <GivenName>Johan</GivenName>\n                        <IndividualID>IND_Pax1</IndividualID>\n                        <Surname>Smithas</Surname>\n                        <TitleName>Mr</TitleName>\n                    </Individual>\n                    <PaxID>Pax1</PaxID>\n                    <PTC>ADT</PTC>\n                </Pax>\n            </PaxList>\n            <PaxSegmentList>\n                <!-- schema mandatory -->\n                <PaxSegment>\n                    <Arrival/>\n                    <Dep/>\n                    <MarketingCarrierInfo>\n                        <CarrierDesigCode>{{AIRLINE_ID}}</CarrierDesigCode>\n                        <MarketingCarrierFlightNumberText>119</MarketingCarrierFlightNumberText>\n                    </MarketingCarrierInfo>\n                    <PaxSegmentID>SEG_CDGLHR_2</PaxSegmentID>\n                </PaxSegment>\n            </PaxSegmentList>\n        </DataLists>\n        <Order>\n            <OrderID>XXXF577774E</OrderID>\n            <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n        </Order>\n        <PaymentFunctions>\n            <PaymentProcessingDetails>\n                <Amount CurCode=\" USD\">65.00</Amount>\n                <Payer>\n                    <Individual>\n                        <GivenName>Johan</GivenName>\n                        <Surname>Smithas</Surname>\n                        <TitleName>Mr</TitleName>\n                    </Individual>\n                </Payer>\n                <PaymentMethod>\n                    <PaymentCard>\n                        <CardBrandCode>CA</CardBrandCode>\n                        <CardHolderName>Mr. Johan Smithas</CardHolderName>\n                        <CardSecurityCode>123</CardSecurityCode>\n                        <CardSeqNumber>4111111111111</CardSeqNumber>\n                        <ExpirationDate>1122</ExpirationDate>\n                    </PaymentCard>\n                </PaymentMethod>\n                <TypeCode>CC</TypeCode>\n            </PaymentProcessingDetails>\n        </PaymentFunctions>\n    </Request>\n</IATA_OrderChangeRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "06 - OrderChange - Delete Service (OneWay 1ADT)",
+			"item": [
+				{
+					"name": "OrderReshopRQ",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<IATA_OrderReshopRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_OrderReshopRQ\">\r\n\t<MessageDoc>\r\n\t\t\t<RefVersionNumber>1.0</RefVersionNumber>\r\n\t</MessageDoc>\r\n\t<Party>\r\n\t\t<Participant>\r\n\t\t\t<Aggregator>\r\n\t\t\t\t<AggregatorID>88888888</AggregatorID>\r\n\t\t\t\t<Name>JR TECHNOLOGIES</Name>\r\n\t\t\t</Aggregator>\r\n\t\t</Participant>\r\n\t\t<Sender>\r\n\t\t\t<TravelAgency>\r\n\t\t\t\t<AgencyID>{{AGENCY_ID}}</AgencyID>\r\n\t\t\t\t<IATA_Number>12312312</IATA_Number>\r\n\t\t\t\t<Name>Gods Travel</Name>\r\n\t\t\t</TravelAgency>\r\n\t\t</Sender>\r\n\t</Party>\r\n\t<POS>\r\n\t\t<City>\r\n\t\t\t<IATA_LocationCode>ATH</IATA_LocationCode>\r\n\t\t</City>\r\n\t\t<Country>\r\n\t\t\t<CountryCode>GR</CountryCode>\r\n\t\t</Country>\r\n\t\t<RequestTime>2018-10-12T07:38:00</RequestTime>\r\n\t</POS>\r\n\t<Request>\r\n\t\t<OrderRefID>XXXF577774E</OrderRefID>\r\n\t\t<UpdateOrder>\r\n\t\t\t<ReshopOrder>\r\n\t\t\t\t<ServiceOrder>\r\n\t\t\t\t\t<DeleteOrderItem>\r\n\t\t\t\t\t\t<OrderItemRefID>ORDERITEM1_2</OrderItemRefID>\r\n\t\t\t\t\t</DeleteOrderItem>\r\n\t\t\t\t</ServiceOrder>\r\n\t\t\t</ReshopOrder>\r\n\t\t</UpdateOrder>\r\n\t</Request>\r\n</IATA_OrderReshopRQ>\r\n"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OrderChangeRQ",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_OrderChangeRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_OrderChangeRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <Request>\n        <ChangeOrder>\n            <UpdateOrderItem>\n                <AcceptOffer>\n                    <SelectedOffer>\n                        <OfferRefID>OFFER1</OfferRefID>\n                        <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n                        <SelectedOfferItem>\n                            <OfferItemRefID>OFFERITEM1</OfferItemRefID>\n                            <PaxRefID>Pax1</PaxRefID>\n                        </SelectedOfferItem>\n                        <ShoppingResponseRefID>107-9733e8db5abc493a977be631e0c922c8</ShoppingResponseRefID>\n                    </SelectedOffer>\n                </AcceptOffer>\n                <DeleteOrderItem/> <!-- Empty delete OrderItem element is mandatory for this flow -->\n            </UpdateOrderItem>\n        </ChangeOrder>\n        <DataLists>\n            <ContactInfoList>\n                <ContactInfo>\n                    <ContactInfoID>Pax1_CNT</ContactInfoID>\n                    <EmailAddress>\n                        <EmailAddressText>j.smithas@mail.com</EmailAddressText>\n                    </EmailAddress>\n                </ContactInfo>\n            </ContactInfoList>\n            <PaxList>\n                <Pax>\n                    <ContactInfoRefID>Pax1_CNT</ContactInfoRefID>\n                    <Individual>\n                        <GivenName>Johan</GivenName>\n                        <IndividualID>IND_Pax1</IndividualID>\n                        <Surname>Smithas</Surname>\n                        <TitleName>Mr</TitleName>\n                    </Individual>\n                    <PaxID>Pax1</PaxID>\n                    <PTC>ADT</PTC>\n                </Pax>\n            </PaxList>\n        </DataLists>\n        <Order>\n            <OrderID>XXXF577774E</OrderID>\n            <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n        </Order>\n        <PaymentFunctions>\n            <PaymentProcessingDetails>\n                <Amount CurCode=\" USD\">0.0</Amount>\n                <Payer>\n                    <Individual>\n                        <GivenName>Johan</GivenName>\n                        <Surname>Smithas</Surname>\n                        <TitleName>Mr</TitleName>\n                    </Individual>\n                </Payer>\n                <PaymentMethod>\n                    <PaymentCard>\n                        <CardBrandCode>CA</CardBrandCode>\n                        <CardHolderName>Mr. Johan Smithas</CardHolderName>\n                        <CardSecurityCode>123</CardSecurityCode>\n                        <CardSeqNumber>4111111111111</CardSeqNumber>\n                        <ExpirationDate>1122</ExpirationDate>\n                    </PaymentCard>\n                </PaymentMethod>\n                <TypeCode>CC</TypeCode>\n            </PaymentProcessingDetails>\n        </PaymentFunctions>\n    </Request>\n</IATA_OrderChangeRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "07 - OrderChange - Update Segment (OneWay 1ADT)",
+			"item": [
+				{
+					"name": "OrderReshopRQ",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_OrderReshopRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_OrderReshopRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <POS>\n        <City>\n            <IATA_LocationCode>ATH</IATA_LocationCode>\n        </City>\n        <Country>\n            <CountryCode>GR</CountryCode>\n        </Country>\n        <RequestTime>2018-10-12T07:38:00</RequestTime>\n    </POS>\n    <Request>\n        <OrderRefID>XXXF577774E</OrderRefID>\n        <UpdateOrder>\n            <!-- Update/Change Itinerary -->\n            <ReshopOrder>\n                <ServiceOrder>\n                    <AddOfferItems>\n                        <FlightCriteria>\n                            <SpecificOriginDestCriteria>\n                                <DestStationCode>LHR</DestStationCode>\n                                <OriginStationCode>BCN</OriginStationCode>\n                                <PaxJourney>\n                                    <PaxSegment>\n                                        <Arrival>\n                                            <IATA_LocationCode>LHR</IATA_LocationCode>\n                                        </Arrival>\n                                        <Dep>\n                                            <AircraftScheduledDateTime>2020-03-30T00:00:00</AircraftScheduledDateTime>\n                                            <IATA_LocationCode>BCN</IATA_LocationCode>\n                                        </Dep>\n                                        <MarketingCarrierInfo>\n                                            <CarrierDesigCode>{{AIRLINE_ID}}</CarrierDesigCode>\n                                            <MarketingCarrierFlightNumberText/>\n                                        </MarketingCarrierInfo>\n                                        <OperatingCarrierInfo/>\n                                    </PaxSegment>\n                                </PaxJourney>\n                            </SpecificOriginDestCriteria>\n                        </FlightCriteria>\n                    </AddOfferItems>\n                    <DeleteOrderItem>\n                        <OrderItemRefID>ORDERITEM1</OrderItemRefID>\n                    </DeleteOrderItem>\n                </ServiceOrder>\n            </ReshopOrder>\n        </UpdateOrder>\n    </Request>\n</IATA_OrderReshopRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OrderChangeRQ",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_OrderChangeRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_OrderChangeRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <Request>\n        <ChangeOrder>\n            <UpdateOrderItem>\n                <AcceptOffer>\n                    <SelectedOffer>\n                        <OfferRefID>OFFER1</OfferRefID>\n                        <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n                        <SelectedOfferItem>\n                            <OfferItemRefID>OFFERITEM1_1</OfferItemRefID>\n                            <PaxRefID>Pax1</PaxRefID>\n                        </SelectedOfferItem>\n                        <ShoppingResponseRefID>107-d677d31b038e4f5082fbab6ebe807db7</ShoppingResponseRefID>\n                    </SelectedOffer>\n                </AcceptOffer>\n            </UpdateOrderItem>\n        </ChangeOrder>\n        <DataLists>\n            <ContactInfoList>\n                <ContactInfo>\n                    <ContactInfoID>Pax1_CNT</ContactInfoID>\n                    <EmailAddress>\n                        <EmailAddressText>j.smithas@mail.com</EmailAddressText>\n                    </EmailAddress>\n                </ContactInfo>\n            </ContactInfoList>\n            <PaxList>\n                <Pax>\n                    <ContactInfoRefID>Pax1_CNT</ContactInfoRefID>\n                    <Individual>\n                        <GivenName>Johan</GivenName>\n                        <IndividualID>IND_Pax1</IndividualID>\n                        <Surname>Smithas</Surname>\n                        <TitleName>Mr</TitleName>\n                    </Individual>\n                    <PaxID>Pax1</PaxID>\n                    <PTC>ADT</PTC>\n                </Pax>\n            </PaxList>\n        </DataLists>\n        <Order>\n            <OrderID>XXXF577774E</OrderID>\n            <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n        </Order>\n        <PaymentFunctions>\n            <PaymentProcessingDetails>\n                <Amount CurCode=\" USD\">327.80</Amount>\n                <Payer>\n                    <Individual>\n                        <GivenName>Johan</GivenName>\n                        <Surname>Smithas</Surname>\n                        <TitleName>Mr</TitleName>\n                    </Individual>\n                </Payer>\n                <PaymentMethod>\n                    <PaymentCard>\n                        <CardBrandCode>CA</CardBrandCode>\n                        <CardHolderName>Mr. Johan Smithas</CardHolderName>\n                        <CardSecurityCode>123</CardSecurityCode>\n                        <CardSeqNumber>4111111111111</CardSeqNumber>\n                        <ExpirationDate>1122</ExpirationDate>\n                    </PaymentCard>\n                </PaymentMethod>\n                <TypeCode>CC</TypeCode>\n            </PaymentProcessingDetails>\n        </PaymentFunctions>\n    </Request>\n</IATA_OrderChangeRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "08 - Roundtrip 2ADTs",
+			"item": [
+				{
+					"name": "AirShoppingRQ",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_AirShoppingRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_AirShoppingRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <PayloadAttributes>\n        <EchoTokenText>{{$guid}}</EchoTokenText>\n        <Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\n        <TrxID>transaction{{$randomInt}}</TrxID>\n        <VersionNumber>2019.2</VersionNumber>\n    </PayloadAttributes>\n    <POS>\n        <City>\n            <IATA_LocationCode>ATH</IATA_LocationCode>\n        </City>\n        <Country>\n            <CountryCode>GR</CountryCode>\n        </Country>\n        <RequestTime>2018-10-12T07:38:00</RequestTime>\n    </POS>\n    <Request>\n        <FlightCriteria>\n            <OriginDestCriteria>\n                <DestArrivalCriteria>\n                    <IATA_LocationCode>BCN</IATA_LocationCode>\n                </DestArrivalCriteria>\n                <OriginDepCriteria>\n                    <Date>2020-06-20</Date>\n                    <IATA_LocationCode>CDG</IATA_LocationCode>\n                </OriginDepCriteria>\n            </OriginDestCriteria>\n            <OriginDestCriteria>\n                <DestArrivalCriteria>\n                    <IATA_LocationCode>CDG</IATA_LocationCode>\n                </DestArrivalCriteria>\n                <OriginDepCriteria>\n                    <Date>2020-06-27</Date>\n                    <IATA_LocationCode>BCN</IATA_LocationCode>\n                </OriginDepCriteria>\n                <PreferredCabinType>\n                    <CabinTypeCode>M</CabinTypeCode>\n                </PreferredCabinType>\n            </OriginDestCriteria>\n        </FlightCriteria>\n        <Paxs>\n            <Pax>\n                <PaxID>Pax1</PaxID>\n                <PTC>ADT</PTC>\n            </Pax>\n            <Pax>\n                <PaxID>Pax2</PaxID>\n                <PTC>ADT</PTC>\n            </Pax>\n        </Paxs>\n        <ShoppingCriteria>\n            <CabinTypeCriteria>\n                <CabinTypeCode>M</CabinTypeCode>\n            </CabinTypeCriteria>\n        </ShoppingCriteria>\n    </Request>\n</IATA_AirShoppingRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OrderCreateRQ - flight only",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<IATA_OrderCreateRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_OrderCreateRQ\">\r\n\t<MessageDoc>\r\n\t\t\t<RefVersionNumber>1.0</RefVersionNumber>\r\n\t</MessageDoc>\r\n\t<Party>\r\n\t\t<Participant>\r\n\t\t\t<Aggregator>\r\n\t\t\t\t<AggregatorID>88888888</AggregatorID>\r\n\t\t\t\t<Name>JR TECHNOLOGIES</Name>\r\n\t\t\t</Aggregator>\r\n\t\t</Participant>\r\n\t\t<Sender>\r\n\t\t\t<TravelAgency>\r\n\t\t\t\t<AgencyID>{{AGENCY_ID}}</AgencyID>\r\n\t\t\t\t<IATA_Number>12312312</IATA_Number>\r\n\t\t\t\t<Name>Gods Travel</Name>\r\n\t\t\t</TravelAgency>\r\n\t\t</Sender>\r\n\t</Party>\r\n\t<PayloadAttributes>\r\n\t\t<EchoTokenText>{{$guid}}</EchoTokenText>\r\n\t\t<Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\r\n\t\t<TrxID>transaction{{$randomInt}}</TrxID>\r\n\t\t<VersionNumber>2019.2</VersionNumber>\r\n\t</PayloadAttributes>\r\n\t<POS>\r\n\t\t<City>\r\n\t\t\t<IATA_LocationCode>ATH</IATA_LocationCode>\r\n\t\t</City>\r\n\t\t<Country>\r\n\t\t\t<CountryCode>GR</CountryCode>\r\n\t\t</Country>\r\n\t\t<RequestTime>2018-10-12T07:38:00</RequestTime>\r\n\t</POS>\r\n\t<Request>\r\n\t\t<CreateOrder>\r\n\t\t\t<SelectedOffer>\r\n\t\t\t\t<OfferRefID>OFFER1</OfferRefID>\r\n\t\t\t\t<OwnerCode>{{AIRLINE_ID}}</OwnerCode>\r\n\t\t\t\t<SelectedOfferItem>\r\n\t\t\t\t\t<OfferItemRefID>OFFERITEM1_1</OfferItemRefID>\r\n\t\t\t\t\t<PaxRefID>Pax1</PaxRefID>\r\n\t\t\t\t</SelectedOfferItem>\r\n\t\t\t\t<SelectedOfferItem>\r\n\t\t\t\t\t<OfferItemRefID>OFFERITEM1_2</OfferItemRefID>\r\n\t\t\t\t\t<PaxRefID>Pax2</PaxRefID>\r\n\t\t\t\t</SelectedOfferItem>\t\t\t\t\r\n\t\t\t\t<ShoppingResponseRefID>201-d9ecda9c5b2743ea8f7d6e00da0421d0</ShoppingResponseRefID>\r\n\t\t\t</SelectedOffer>\r\n\t\t\t<SelectedOffer>\r\n\t\t\t\t<OfferRefID>OFFER88</OfferRefID>\r\n\t\t\t\t<OwnerCode>{{AIRLINE_ID}}</OwnerCode>\r\n\t\t\t\t<SelectedOfferItem>\r\n\t\t\t\t\t<OfferItemRefID>OFFERITEM88_1</OfferItemRefID>\r\n\t\t\t\t\t<PaxRefID>Pax1</PaxRefID>\r\n\t\t\t\t</SelectedOfferItem>\r\n\t\t\t\t<SelectedOfferItem>\r\n\t\t\t\t\t<OfferItemRefID>OFFERITEM88_2</OfferItemRefID>\r\n\t\t\t\t\t<PaxRefID>Pax2</PaxRefID>\r\n\t\t\t\t</SelectedOfferItem>\t\t\t\t\r\n\t\t\t\t<ShoppingResponseRefID>201-d9ecda9c5b2743ea8f7d6e00da0421d0</ShoppingResponseRefID>\r\n\t\t\t</SelectedOffer>\r\n\t\t</CreateOrder>\r\n\t\t<DataLists>\r\n\t\t\t<ContactInfoList>\r\n\t\t\t\t<ContactInfo>\r\n\t\t\t\t\t<ContactInfoID>Pax1_CNT</ContactInfoID>\r\n\t\t\t\t\t<EmailAddress>\r\n\t\t\t\t\t\t<EmailAddressText>j.smithas@mail.com</EmailAddressText>\r\n\t\t\t\t\t</EmailAddress>\r\n\t\t\t\t</ContactInfo>\r\n\t\t\t\t<ContactInfo>\r\n\t\t\t\t\t<ContactInfoID>Pax2_CNT</ContactInfoID>\r\n\t\t\t\t\t<EmailAddress>\r\n\t\t\t\t\t\t<EmailAddressText>t.smithas@mail.com</EmailAddressText>\r\n\t\t\t\t\t</EmailAddress>\r\n\t\t\t\t</ContactInfo>\r\n\t\t\t</ContactInfoList>\r\n\t\t\t<PaxList>\r\n\t\t\t\t<Pax>\r\n\t\t\t\t\t<ContactInfoRefID>Pax1_CNT</ContactInfoRefID>\r\n\t\t\t\t\t<Individual>\r\n\t\t\t\t\t\t<GivenName>Johan</GivenName>\r\n\t\t\t\t\t\t<IndividualID>IND_Pax1</IndividualID>\r\n\t\t\t\t\t\t<Surname>Smithas</Surname>\r\n\t\t\t\t\t\t<TitleName>Mr</TitleName>\r\n\t\t\t\t\t</Individual>\r\n\t\t\t\t\t<PaxID>Pax1</PaxID>\r\n\t\t\t\t\t<PTC>ADT</PTC>\r\n\t\t\t\t</Pax>\r\n\t\t\t\t<Pax>\r\n\t\t\t\t\t<ContactInfoRefID>Pax2_CNT</ContactInfoRefID>\r\n\t\t\t\t\t<Individual>\r\n\t\t\t\t\t\t<GivenName>Tom</GivenName>\r\n\t\t\t\t\t\t<IndividualID>IND_Pax2</IndividualID>\r\n\t\t\t\t\t\t<Surname>Smithas</Surname>\r\n\t\t\t\t\t\t<TitleName>Mr</TitleName>\r\n\t\t\t\t\t</Individual>\r\n\t\t\t\t\t<PaxID>Pax2</PaxID>\r\n\t\t\t\t\t<PTC>ADT</PTC>\r\n\t\t\t\t</Pax>\r\n\t\t\t</PaxList>\r\n\t\t</DataLists>\r\n\t\t<PaymentFunctions>\r\n\t\t\t<PaymentProcessingDetails>\r\n\t\t\t\t<Amount CurCode=\" USD\">1400.82</Amount>\r\n\t\t\t\t<PaymentMethod>\r\n\t\t\t\t\t<Cash/>\r\n\t\t\t\t</PaymentMethod>\r\n\t\t\t\t<TypeCode>CA</TypeCode>\r\n\t\t\t</PaymentProcessingDetails>\r\n\t\t</PaymentFunctions>\r\n\t</Request>\r\n</IATA_OrderCreateRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OrderCreateRQ - with aLaCartes mulitple quantity",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_OrderCreateRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_OrderCreateRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <POS>\n        <City>\n            <IATA_LocationCode>ATH</IATA_LocationCode>\n        </City>\n        <Country>\n            <CountryCode>GR</CountryCode>\n        </Country>\n        <RequestTime>2018-10-12T07:38:00</RequestTime>\n    </POS>\n    <Request>\n        <CreateOrder>\n            <SelectedOffer>\n                <OfferRefID>OFFER1</OfferRefID>\n                <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n                <SelectedOfferItem>\n                    <OfferItemRefID>OFFERITEM1_1</OfferItemRefID>\n                    <PaxRefID>Pax1</PaxRefID>\n                </SelectedOfferItem>\n                <SelectedOfferItem>\n                    <OfferItemRefID>OFFERITEM1_2</OfferItemRefID>\n                    <PaxRefID>Pax2</PaxRefID>\n                </SelectedOfferItem>\n                <ShoppingResponseRefID>201-464e543dd63844a3a889aab9b33ec312</ShoppingResponseRefID>\n            </SelectedOffer>\n            <SelectedOffer>\n                <OfferRefID>OFFER88</OfferRefID>\n                <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n                <SelectedOfferItem>\n                    <OfferItemRefID>OFFERITEM88_1</OfferItemRefID>\n                    <PaxRefID>Pax1</PaxRefID>\n                </SelectedOfferItem>\n                <SelectedOfferItem>\n                    <OfferItemRefID>OFFERITEM88_2</OfferItemRefID>\n                    <PaxRefID>Pax2</PaxRefID>\n                </SelectedOfferItem>\n                <ShoppingResponseRefID>201-464e543dd63844a3a889aab9b33ec312</ShoppingResponseRefID>\n            </SelectedOffer>\n            <SelectedOffer>\n                <OfferRefID>ALACARTEOFFER1</OfferRefID>\n                <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n                <SelectedOfferItem>\n                    <OfferItemRefID>ALACARTEOFFERITEM2</OfferItemRefID>\n                    <PaxRefID>Pax1</PaxRefID>\n                    <SelectedALaCarteOfferItem>\n                        <FlightAssociations>\n                            <PaxSegmentRefID>SEG_CDGBCN_1</PaxSegmentRefID>\n                        </FlightAssociations>\n                        <Qty>1</Qty>\n                    </SelectedALaCarteOfferItem>\n                </SelectedOfferItem>\n                <SelectedOfferItem>\n                    <OfferItemRefID>ALACARTEOFFERITEM6</OfferItemRefID>\n                    <PaxRefID>Pax2</PaxRefID>\n                    <SelectedALaCarteOfferItem>\n                        <FlightAssociations>\n                            <PaxSegmentRefID>SEG_BCNFRA_35</PaxSegmentRefID>\n                        </FlightAssociations>\n                        <Qty>1</Qty>\n                    </SelectedALaCarteOfferItem>\n                </SelectedOfferItem>\n                <SelectedOfferItem>\n                    <OfferItemRefID>ALACARTEOFFERITEM6</OfferItemRefID>\n                    <PaxRefID>Pax1</PaxRefID>\n                    <SelectedALaCarteOfferItem>\n                        <FlightAssociations>\n                            <PaxSegmentRefID>SEG_BCNFRA_35</PaxSegmentRefID>\n                        </FlightAssociations>\n                        <Qty>2</Qty>\n                    </SelectedALaCarteOfferItem>\n                </SelectedOfferItem>\n                <ShoppingResponseRefID>201-464e543dd63844a3a889aab9b33ec312</ShoppingResponseRefID>\n            </SelectedOffer>\n        </CreateOrder>\n        <DataLists>\n            <ContactInfoList>\n                <ContactInfo>\n                    <ContactInfoID>Pax1_CNT</ContactInfoID>\n                    <EmailAddress>\n                        <EmailAddressText>j.smithas@mail.com</EmailAddressText>\n                    </EmailAddress>\n                </ContactInfo>\n                <ContactInfo>\n                    <ContactInfoID>Pax2_CNT</ContactInfoID>\n                    <EmailAddress>\n                        <EmailAddressText>t.smithas@mail.com</EmailAddressText>\n                    </EmailAddress>\n                </ContactInfo>\n            </ContactInfoList>\n            <PaxList>\n                <Pax>\n                    <ContactInfoRefID>Pax1_CNT</ContactInfoRefID>\n                    <Individual>\n                        <GivenName>Johan</GivenName>\n                        <IndividualID>IND_Pax1</IndividualID>\n                        <Surname>Smithas</Surname>\n                        <TitleName>Mr</TitleName>\n                    </Individual>\n                    <PaxID>Pax1</PaxID>\n                    <PTC>ADT</PTC>\n                </Pax>\n                <Pax>\n                    <ContactInfoRefID>Pax2_CNT</ContactInfoRefID>\n                    <Individual>\n                        <GivenName>Tom</GivenName>\n                        <IndividualID>IND_Pax2</IndividualID>\n                        <Surname>Smithas</Surname>\n                        <TitleName>Mr</TitleName>\n                    </Individual>\n                    <PaxID>Pax2</PaxID>\n                    <PTC>ADT</PTC>\n                </Pax>\n            </PaxList>\n        </DataLists>\n        <PaymentFunctions>\n            <PaymentProcessingDetails>\n                <Amount CurCode=\" USD\">1650.82</Amount>\n                <PaymentMethod>\n                    <Cash/>\n                </PaymentMethod>\n                <TypeCode>CA</TypeCode>\n            </PaymentProcessingDetails>\n        </PaymentFunctions>\n    </Request>\n</IATA_OrderCreateRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ServiceListRQ  - FlightSegment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_ServiceListRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_ServiceListRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <PayloadAttributes>\n        <EchoTokenText>{{$guid}}</EchoTokenText>\n        <Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\n        <TrxID>transaction{{$randomInt}}</TrxID>\n        <VersionNumber>2019.2</VersionNumber>\n    </PayloadAttributes>\n    <POS>\n        <City>\n            <IATA_LocationCode>ATH</IATA_LocationCode>\n        </City>\n        <Country>\n            <CountryCode>GR</CountryCode>\n        </Country>\n        <RequestTime>2018-10-12T07:38:00</RequestTime>\n    </POS>\n    <Request>\n        <CoreRequest>\n            <OriginDest>\n                <DestStationCode/>\n                <OriginStationCode/>\n                <PaxJourney>\n                    <PaxSegment>\n                        <Arrival>\n                            <AircraftScheduledDateTime>2020-06-20T09:27:00.000</AircraftScheduledDateTime>\n                            <IATA_LocationCode>BCN</IATA_LocationCode>\n                        </Arrival>\n                        <Dep>\n                            <AircraftScheduledDateTime>2020-06-20T07:50:00.000</AircraftScheduledDateTime>\n                            <IATA_LocationCode>CDG</IATA_LocationCode>\n                        </Dep>\n                        <MarketingCarrierInfo>\n                            <CarrierDesigCode>{{AIRLINE_ID}}</CarrierDesigCode>\n                            <MarketingCarrierFlightNumberText>050</MarketingCarrierFlightNumberText>\n                        </MarketingCarrierInfo>\n                    </PaxSegment>\n                </PaxJourney>\n            </OriginDest>\n        </CoreRequest>\n        <Pax>\n            <PaxID>Pax1</PaxID>\n            <PTC>ADT</PTC>\n        </Pax>\n        <Pax>\n            <PaxID>Pax2</PaxID>\n            <PTC>ADT</PTC>\n        </Pax>\n        <ShoppingCriteria>\n            <CabinTypeCriteria>\n                <CabinTypeCode>M</CabinTypeCode>\n            </CabinTypeCriteria>\n        </ShoppingCriteria>\n    </Request>\n</IATA_ServiceListRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OrderCreateRQ - with aLaCarte from ServiceList",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_OrderCreateRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_OrderCreateRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <POS>\n        <City>\n            <IATA_LocationCode>ATH</IATA_LocationCode>\n        </City>\n        <Country>\n            <CountryCode>GR</CountryCode>\n        </Country>\n        <RequestTime>2018-10-12T07:38:00</RequestTime>\n    </POS>\n    <Request>\n        <CreateOrder>\n            <SelectedOffer>\n                <OfferRefID>OFFER1</OfferRefID>\n                <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n                <SelectedOfferItem>\n                    <OfferItemRefID>OFFERITEM1_1</OfferItemRefID>\n                    <PaxRefID>Pax1</PaxRefID>\n                </SelectedOfferItem>\n                <SelectedOfferItem>\n                    <OfferItemRefID>OFFERITEM1_2</OfferItemRefID>\n                    <PaxRefID>Pax2</PaxRefID>\n                </SelectedOfferItem>\n                <ShoppingResponseRefID>201-1c1ce8e15dae4d889a03b4a884124f31</ShoppingResponseRefID>\n            </SelectedOffer>\n            <SelectedOffer>\n                <OfferRefID>OFFER88</OfferRefID>\n                <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n                <SelectedOfferItem>\n                    <OfferItemRefID>OFFERITEM88_1</OfferItemRefID>\n                    <PaxRefID>Pax1</PaxRefID>\n                </SelectedOfferItem>\n                <SelectedOfferItem>\n                    <OfferItemRefID>OFFERITEM88_2</OfferItemRefID>\n                    <PaxRefID>Pax2</PaxRefID>\n                </SelectedOfferItem>\n                <ShoppingResponseRefID>201-1c1ce8e15dae4d889a03b4a884124f31</ShoppingResponseRefID>\n            </SelectedOffer>\n            <SelectedOffer>\n                <OfferRefID>ALACARTEOFFER1</OfferRefID>\n                <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n                <SelectedOfferItem>\n                    <OfferItemRefID>ALACARTEOFFERITEM2</OfferItemRefID>\n                    <PaxRefID>Pax1</PaxRefID>\n                    <SelectedALaCarteOfferItem>\n                        <FlightAssociations>\n                            <PaxSegmentRefID>SEG_CDGBCN_1</PaxSegmentRefID>\n                        </FlightAssociations>\n                        <Qty>1</Qty>\n                    </SelectedALaCarteOfferItem>\n                </SelectedOfferItem>\n                <SelectedOfferItem>\n                    <OfferItemRefID>ALACARTEOFFERITEM4</OfferItemRefID>\n                    <PaxRefID>Pax2</PaxRefID>\n                    <SelectedALaCarteOfferItem>\n                        <FlightAssociations>\n                            <PaxSegmentRefID>SEG_CDGBCN_1</PaxSegmentRefID>\n                        </FlightAssociations>\n                        <Qty>1</Qty>\n                    </SelectedALaCarteOfferItem>\n                </SelectedOfferItem>\n                <ShoppingResponseRefID>217-90c92ecae1064b52afab89506c5eb812</ShoppingResponseRefID>\n            </SelectedOffer>\n        </CreateOrder>\n        <DataLists>\n            <ContactInfoList>\n                <ContactInfo>\n                    <ContactInfoID>Pax1_CNT</ContactInfoID>\n                    <EmailAddress>\n                        <EmailAddressText>j.smithas@mail.com</EmailAddressText>\n                    </EmailAddress>\n                </ContactInfo>\n                <ContactInfo>\n                    <ContactInfoID>Pax2_CNT</ContactInfoID>\n                    <EmailAddress>\n                        <EmailAddressText>t.smithas@mail.com</EmailAddressText>\n                    </EmailAddress>\n                </ContactInfo>\n            </ContactInfoList>\n            <PaxList>\n                <Pax>\n                    <ContactInfoRefID>Pax1_CNT</ContactInfoRefID>\n                    <Individual>\n                        <GivenName>Johan</GivenName>\n                        <IndividualID>IND_Pax1</IndividualID>\n                        <Surname>Smithas</Surname>\n                        <TitleName>Mr</TitleName>\n                    </Individual>\n                    <PaxID>Pax1</PaxID>\n                    <PTC>ADT</PTC>\n                </Pax>\n                <Pax>\n                    <ContactInfoRefID>Pax2_CNT</ContactInfoRefID>\n                    <Individual>\n                        <GivenName>Tom</GivenName>\n                        <IndividualID>IND_Pax2</IndividualID>\n                        <Surname>Smithas</Surname>\n                        <TitleName>Mr</TitleName>\n                    </Individual>\n                    <PaxID>Pax2</PaxID>\n                    <PTC>ADT</PTC>\n                </Pax>\n            </PaxList>\n        </DataLists>\n        <PaymentFunctions>\n            <PaymentProcessingDetails>\n                <Amount CurCode=\" USD\">1530.82</Amount>\n                <PaymentMethod>\n                    <Cash/>\n                </PaymentMethod>\n                <TypeCode>CA</TypeCode>\n            </PaymentProcessingDetails>\n        </PaymentFunctions>\n    </Request>\n</IATA_OrderCreateRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OrderCreateRQ - book and hold",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<IATA_OrderCreateRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_OrderCreateRQ\">\r\n\t<MessageDoc>\r\n\t\t\t<RefVersionNumber>1.0</RefVersionNumber>\r\n\t</MessageDoc>\r\n\t<Party>\r\n\t\t<Participant>\r\n\t\t\t<Aggregator>\r\n\t\t\t\t<AggregatorID>88888888</AggregatorID>\r\n\t\t\t\t<Name>JR TECHNOLOGIES</Name>\r\n\t\t\t</Aggregator>\r\n\t\t</Participant>\r\n\t\t<Sender>\r\n\t\t\t<TravelAgency>\r\n\t\t\t\t<AgencyID>{{AGENCY_ID}}</AgencyID>\r\n\t\t\t\t<IATA_Number>12312312</IATA_Number>\r\n\t\t\t\t<Name>Gods Travel</Name>\r\n\t\t\t</TravelAgency>\r\n\t\t</Sender>\r\n\t</Party>\r\n\t<PayloadAttributes>\r\n\t\t<EchoTokenText>{{$guid}}</EchoTokenText>\r\n\t\t<Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\r\n\t\t<TrxID>transaction{{$randomInt}}</TrxID>\r\n\t\t<VersionNumber>2019.2</VersionNumber>\r\n\t</PayloadAttributes>\r\n\t<POS>\r\n\t\t<City>\r\n\t\t\t<IATA_LocationCode>ATH</IATA_LocationCode>\r\n\t\t</City>\r\n\t\t<Country>\r\n\t\t\t<CountryCode>GR</CountryCode>\r\n\t\t</Country>\r\n\t\t<RequestTime>2018-10-12T07:38:00</RequestTime>\r\n\t</POS>\r\n\t<Request>\r\n\t\t<CreateOrder>\r\n\t\t\t<SelectedOffer>\r\n\t\t\t\t<OfferRefID>OFFER1</OfferRefID>\r\n\t\t\t\t<OwnerCode>{{AIRLINE_ID}}</OwnerCode>\r\n\t\t\t\t<SelectedOfferItem>\r\n\t\t\t\t\t<OfferItemRefID>OFFERITEM1_1</OfferItemRefID>\r\n\t\t\t\t\t<PaxRefID>Pax1</PaxRefID>\r\n\t\t\t\t</SelectedOfferItem>\r\n\t\t\t\t<SelectedOfferItem>\r\n\t\t\t\t\t<OfferItemRefID>OFFERITEM1_2</OfferItemRefID>\r\n\t\t\t\t\t<PaxRefID>Pax2</PaxRefID>\r\n\t\t\t\t</SelectedOfferItem>\t\t\t\t\r\n\t\t\t\t<ShoppingResponseRefID>201-ee35d61e97d94c9e88d395e06fde3d7f</ShoppingResponseRefID>\r\n\t\t\t</SelectedOffer>\r\n\t\t\t<SelectedOffer>\r\n\t\t\t\t<OfferRefID>OFFER88</OfferRefID>\r\n\t\t\t\t<OwnerCode>{{AIRLINE_ID}}</OwnerCode>\r\n\t\t\t\t<SelectedOfferItem>\r\n\t\t\t\t\t<OfferItemRefID>OFFERITEM88_1</OfferItemRefID>\r\n\t\t\t\t\t<PaxRefID>Pax1</PaxRefID>\r\n\t\t\t\t</SelectedOfferItem>\r\n\t\t\t\t<SelectedOfferItem>\r\n\t\t\t\t\t<OfferItemRefID>OFFERITEM88_2</OfferItemRefID>\r\n\t\t\t\t\t<PaxRefID>Pax2</PaxRefID>\r\n\t\t\t\t</SelectedOfferItem>\t\t\t\t\r\n\t\t\t\t<ShoppingResponseRefID>201-ee35d61e97d94c9e88d395e06fde3d7f</ShoppingResponseRefID>\r\n\t\t\t</SelectedOffer>\r\n\t\t</CreateOrder>\r\n\t\t<DataLists>\r\n\t\t\t<ContactInfoList>\r\n\t\t\t\t<ContactInfo>\r\n\t\t\t\t\t<ContactInfoID>Pax1_CNT</ContactInfoID>\r\n\t\t\t\t\t<EmailAddress>\r\n\t\t\t\t\t\t<EmailAddressText>j.smithas@mail.com</EmailAddressText>\r\n\t\t\t\t\t</EmailAddress>\r\n\t\t\t\t</ContactInfo>\r\n\t\t\t\t<ContactInfo>\r\n\t\t\t\t\t<ContactInfoID>Pax2_CNT</ContactInfoID>\r\n\t\t\t\t\t<EmailAddress>\r\n\t\t\t\t\t\t<EmailAddressText>t.smithas@mail.com</EmailAddressText>\r\n\t\t\t\t\t</EmailAddress>\r\n\t\t\t\t</ContactInfo>\r\n\t\t\t</ContactInfoList>\r\n\t\t\t<PaxList>\r\n\t\t\t\t<Pax>\r\n\t\t\t\t\t<ContactInfoRefID>Pax1_CNT</ContactInfoRefID>\r\n\t\t\t\t\t<Individual>\r\n\t\t\t\t\t\t<GivenName>Johan</GivenName>\r\n\t\t\t\t\t\t<IndividualID>IND_Pax1</IndividualID>\r\n\t\t\t\t\t\t<Surname>Smithas</Surname>\r\n\t\t\t\t\t\t<TitleName>Mr</TitleName>\r\n\t\t\t\t\t</Individual>\r\n\t\t\t\t\t<PaxID>Pax1</PaxID>\r\n\t\t\t\t\t<PTC>ADT</PTC>\r\n\t\t\t\t</Pax>\r\n\t\t\t\t<Pax>\r\n\t\t\t\t\t<ContactInfoRefID>Pax2_CNT</ContactInfoRefID>\r\n\t\t\t\t\t<Individual>\r\n\t\t\t\t\t\t<GivenName>Tom</GivenName>\r\n\t\t\t\t\t\t<IndividualID>IND_Pax2</IndividualID>\r\n\t\t\t\t\t\t<Surname>Smithas</Surname>\r\n\t\t\t\t\t\t<TitleName>Mr</TitleName>\r\n\t\t\t\t\t</Individual>\r\n\t\t\t\t\t<PaxID>Pax2</PaxID>\r\n\t\t\t\t\t<PTC>ADT</PTC>\r\n\t\t\t\t</Pax>\r\n\t\t\t</PaxList>\r\n\t\t</DataLists>\r\n\t</Request>\r\n</IATA_OrderCreateRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OrderChangeRQ - confirm booking",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<IATA_OrderChangeRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_OrderChangeRQ\">\r\n\t<MessageDoc>\r\n\t\t\t<RefVersionNumber>1.0</RefVersionNumber>\r\n\t</MessageDoc>\r\n\t<Party>\r\n\t\t<Participant>\r\n\t\t\t<Aggregator>\r\n\t\t\t\t<AggregatorID>88888888</AggregatorID>\r\n\t\t\t\t<Name>JR TECHNOLOGIES</Name>\r\n\t\t\t</Aggregator>\r\n\t\t</Participant>\r\n\t\t<Sender>\r\n\t\t\t<TravelAgency>\r\n\t\t\t\t<AgencyID>{{AGENCY_ID}}</AgencyID>\r\n\t\t\t\t<IATA_Number>12312312</IATA_Number>\r\n\t\t\t\t<Name>Gods Travel</Name>\r\n\t\t\t</TravelAgency>\r\n\t\t</Sender>\r\n\t</Party>\r\n\t<Request>\r\n\t\t<ChangeOrder>\r\n\t\t\t<AcceptRepricedOrder>\r\n\t\t\t\t<!--<OfferRefID>RESHOPOFFER1</OfferRefID>-->\r\n\t\t\t\t<!--<ShoppingResponseRefID>RESHPRSID-das32423-gsd843-fsad4324</ShoppingResponseRefID>-->\r\n\t\t\t</AcceptRepricedOrder>\r\n\t\t</ChangeOrder>\r\n\t\t<Order>\r\n\t\t\t<OrderID>XXXGFL8PJMD</OrderID>\r\n\t\t\t<OwnerCode>{{AIRLINE_ID}}</OwnerCode>\r\n\t\t</Order>\r\n\t\t<PaymentFunctions>\r\n\t\t\t<PaymentProcessingDetails>\r\n\t\t\t\t<Amount CurCode=\" USD\">2923.64</Amount>\r\n\t\t\t\t<Payer>\r\n\t\t\t\t\t<Individual>\r\n\t\t\t\t\t\t<GivenName>Johan</GivenName>\r\n\t\t\t\t\t\t<Surname>Smithas</Surname>\r\n\t\t\t\t\t\t<TitleName>Mr</TitleName>\r\n\t\t\t\t\t</Individual>\r\n\t\t\t\t</Payer>\r\n\t\t\t\t<PaymentMethod>\r\n\t\t\t\t\t<PaymentCard>\r\n\t\t\t\t\t\t<CardBrandCode>CA</CardBrandCode>\r\n\t\t\t\t\t\t<CardHolderName>Mr. Johan Smithas</CardHolderName>\r\n\t\t\t\t\t\t<CardSecurityCode>123</CardSecurityCode>\r\n\t\t\t\t\t\t<CardSeqNumber>4111111111111</CardSeqNumber>\r\n\t\t\t\t\t\t<ExpirationDate>1122</ExpirationDate>\r\n\t\t\t\t\t</PaymentCard>\r\n\t\t\t\t</PaymentMethod>\r\n\t\t\t\t<TypeCode>CC</TypeCode>\r\n\t\t\t</PaymentProcessingDetails>\r\n\t\t</PaymentFunctions>\r\n\t</Request>\r\n</IATA_OrderChangeRQ>\r\n"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "09 - OrderChange - Add Service (Roundtrip 2ADTs) copy",
+			"item": [
+				{
+					"name": "ServiceListRQ  - OrderID",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_ServiceListRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_ServiceListRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <PayloadAttributes>\n        <EchoTokenText>{{$guid}}</EchoTokenText>\n        <Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\n        <TrxID>transaction{{$randomInt}}</TrxID>\n        <VersionNumber>2019.2</VersionNumber>\n    </PayloadAttributes>\n    <POS>\n        <City>\n            <IATA_LocationCode>ATH</IATA_LocationCode>\n        </City>\n        <Country>\n            <CountryCode>GR</CountryCode>\n        </Country>\n        <RequestTime>2018-10-12T07:38:00</RequestTime>\n    </POS>\n    <Request>\n        <CoreRequest>\n            <!-- Request ServiceList with OrderID -->\n            <Order>\n                <OrderID>XXXB9US37ZV</OrderID>\n                <OrderItem> <!-- not used,  schema mandatory -->\n                    <GrandTotalAmount>00.00</GrandTotalAmount>\n                    <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n                </OrderItem>\n                <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n            </Order>\n        </CoreRequest>\n    </Request>\n</IATA_ServiceListRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OrderChangeRQ",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_OrderChangeRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_OrderChangeRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <Request>\n        <ChangeOrder>\n            <UpdateOrderItem>\n                <AcceptOffer>\n                    <SelectedOffer>\n                        <OfferRefID>ALACARTEOFFER1</OfferRefID>\n                        <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n                        <!-- Add ALaCarte service-->\n                        <SelectedOfferItem>\n                            <OfferItemRefID>ALACARTEOFFERITEM44</OfferItemRefID>\n                            <PaxRefID>Pax1</PaxRefID>\n                            <SelectedALaCarteOfferItem>\n                                <FlightAssociations>\n                                    <PaxSegmentRefID>SEG_LHRBCN_3</PaxSegmentRefID>\n                                </FlightAssociations>\n                                <Qty>2</Qty>\n                            </SelectedALaCarteOfferItem>\n                        </SelectedOfferItem>\n                        <ShoppingResponseRefID>217-130009c48180463da61f150c2472d89f</ShoppingResponseRefID>\n                    </SelectedOffer>\n                </AcceptOffer>\n            </UpdateOrderItem>\n        </ChangeOrder>\n        <DataLists>\n            <ContactInfoList>\n                <ContactInfo>\n                    <ContactInfoID>CNTCT_Pax2</ContactInfoID>\n                    <EmailAddress>\n                        <EmailAddressText>t.smithas@mail.com</EmailAddressText>\n                    </EmailAddress>\n                </ContactInfo>\n                <ContactInfo>\n                    <ContactInfoID>CNTCT_Pax1</ContactInfoID>\n                    <EmailAddress>\n                        <EmailAddressText>j.smithas@mail.com</EmailAddressText>\n                    </EmailAddress>\n                </ContactInfo>\n            </ContactInfoList>\n            <PaxList>\n                <Pax>\n                    <ContactInfoRefID>CNTCT_Pax1</ContactInfoRefID>\n                    <Individual>\n                        <GenderCode>X</GenderCode>\n                        <GivenName>Johan</GivenName>\n                        <IndividualID>IND_Pax1</IndividualID>\n                        <Surname>Smithas</Surname>\n                        <TitleName>Mr</TitleName>\n                    </Individual>\n                    <PaxID>Pax1</PaxID>\n                    <ProfileID_Text>117470969571579400</ProfileID_Text>\n                    <PTC>ADT</PTC>\n                </Pax>\n                <Pax>\n                    <ContactInfoRefID>CNTCT_Pax2</ContactInfoRefID>\n                    <Individual>\n                        <GenderCode>X</GenderCode>\n                        <GivenName>Tom</GivenName>\n                        <IndividualID>IND_Pax2</IndividualID>\n                        <Surname>Smithas</Surname>\n                        <TitleName>Mr</TitleName>\n                    </Individual>\n                    <PaxID>Pax2</PaxID>\n                    <ProfileID_Text>117470969554675300</ProfileID_Text>\n                    <PTC>ADT</PTC>\n                </Pax>\n            </PaxList>\n            <PaxSegmentList>\n                <!-- schema mandatory -->\n                <PaxSegment>\n                    <Arrival/>\n                    <Dep/>\n                    <MarketingCarrierInfo>\n                        <CarrierDesigCode>{{AIRLINE_ID}}</CarrierDesigCode>\n                        <MarketingCarrierFlightNumberText>070</MarketingCarrierFlightNumberText>\n                    </MarketingCarrierInfo>\n                    <PaxSegmentID>SEG_LHRBCN_3</PaxSegmentID>\n                </PaxSegment>\n            </PaxSegmentList>\n        </DataLists>\n        <Order>\n            <OrderID>XXXB9US37ZV</OrderID>\n            <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n        </Order>\n        <PaymentFunctions>\n            <PaymentProcessingDetails>\n                <Amount CurCode=\" USD\">90.00</Amount>\n                <Payer>\n                    <Individual>\n                        <GivenName>Johan</GivenName>\n                        <Surname>Smithas</Surname>\n                        <TitleName>Mr</TitleName>\n                    </Individual>\n                </Payer>\n                <PaymentMethod>\n                    <PaymentCard>\n                        <CardBrandCode>CA</CardBrandCode>\n                        <CardHolderName>Mr. Johan Smithas</CardHolderName>\n                        <CardSecurityCode>123</CardSecurityCode>\n                        <CardSeqNumber>4111111111111</CardSeqNumber>\n                        <ExpirationDate>1122</ExpirationDate>\n                    </PaymentCard>\n                </PaymentMethod>\n                <TypeCode>CC</TypeCode>\n            </PaymentProcessingDetails>\n        </PaymentFunctions>\n    </Request>\n</IATA_OrderChangeRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "10 - OrderChange - Delete Service (Roundtrip 2ADTs)",
+			"item": [
+				{
+					"name": "OrderReshopRQ",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_OrderReshopRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_OrderReshopRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <POS>\n        <City>\n            <IATA_LocationCode>ATH</IATA_LocationCode>\n        </City>\n        <Country>\n            <CountryCode>GR</CountryCode>\n        </Country>\n        <RequestTime>2018-10-12T07:38:00</RequestTime>\n    </POS>\n    <Request>\n        <OrderRefID>XXXB9US37ZV</OrderRefID>\n        <UpdateOrder>\n            <ReshopOrder>\n                <ServiceOrder>\n                    <DeleteOrderItem>\n                        <OrderItemRefID>ORDERITEM1_3</OrderItemRefID>\n                    </DeleteOrderItem>\n                </ServiceOrder>\n            </ReshopOrder>\n        </UpdateOrder>\n    </Request>\n</IATA_OrderReshopRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OrderChangeRQ",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_OrderChangeRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_OrderChangeRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <Request>\n        <ChangeOrder>\n            <UpdateOrderItem>\n                <AcceptOffer>\n                    <SelectedOffer>\n                        <OfferRefID>OFFER1</OfferRefID>\n                        <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n                        <SelectedOfferItem>\n                            <OfferItemRefID>OFFERITEM1</OfferItemRefID>\n                            <PaxRefID>Pax1</PaxRefID>\n                        </SelectedOfferItem>\n                        <ShoppingResponseRefID>107-fa5b5bdfb07944b7bf13069ab804bdbf</ShoppingResponseRefID>\n                    </SelectedOffer>\n                </AcceptOffer>\n                <DeleteOrderItem/> <!-- Empty delete OrderItem element is mandatory for this flow -->\n            </UpdateOrderItem>\n        </ChangeOrder>\n        <DataLists>\n            <ContactInfoList>\n                <ContactInfo>\n                    <ContactInfoID>Pax1_CNT</ContactInfoID>\n                    <EmailAddress>\n                        <EmailAddressText>j.smithas@mail.com</EmailAddressText>\n                    </EmailAddress>\n                </ContactInfo>\n                <ContactInfo>\n                    <ContactInfoID>Pax2_CNT</ContactInfoID>\n                    <EmailAddress>\n                        <EmailAddressText>t.smithas@mail.com</EmailAddressText>\n                    </EmailAddress>\n                </ContactInfo>\n            </ContactInfoList>\n            <PaxList>\n                <Pax>\n                    <ContactInfoRefID>Pax1_CNT</ContactInfoRefID>\n                    <Individual>\n                        <GivenName>Johan</GivenName>\n                        <IndividualID>IND_Pax1</IndividualID>\n                        <Surname>Smithas</Surname>\n                        <TitleName>Mr</TitleName>\n                    </Individual>\n                    <PaxID>Pax1</PaxID>\n                    <PTC>ADT</PTC>\n                </Pax>\n                <Pax>\n                    <ContactInfoRefID>Pax2_CNT</ContactInfoRefID>\n                    <Individual>\n                        <GivenName>Tom</GivenName>\n                        <IndividualID>IND_Pax2</IndividualID>\n                        <Surname>Smithas</Surname>\n                        <TitleName>Mr</TitleName>\n                    </Individual>\n                    <PaxID>Pax2</PaxID>\n                    <PTC>ADT</PTC>\n                </Pax>\n            </PaxList>\n        </DataLists>\n        <Order>\n            <OrderID>XXXVRY97FGS</OrderID>\n            <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n        </Order>\n        <PaymentFunctions>\n            <PaymentProcessingDetails>\n                <Amount CurCode=\" USD\">0.00</Amount>\n                <Payer>\n                    <Individual>\n                        <GivenName>Johan</GivenName>\n                        <Surname>Smithas</Surname>\n                        <TitleName>Mr</TitleName>\n                    </Individual>\n                </Payer>\n                <PaymentMethod>\n                    <PaymentCard>\n                        <CardBrandCode>CA</CardBrandCode>\n                        <CardHolderName>Mr. Johan Smithas</CardHolderName>\n                        <CardSecurityCode>123</CardSecurityCode>\n                        <CardSeqNumber>4111111111111</CardSeqNumber>\n                        <ExpirationDate>1122</ExpirationDate>\n                    </PaymentCard>\n                </PaymentMethod>\n                <TypeCode>CC</TypeCode>\n            </PaymentProcessingDetails>\n        </PaymentFunctions>\n    </Request>\n</IATA_OrderChangeRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "11 - OrderChange - Update Segment (Roundtrip 2ADTs)",
+			"item": [
+				{
+					"name": "OrderReshopRQ",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<IATA_OrderReshopRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_OrderReshopRQ\">\r\n\t<MessageDoc>\r\n\t\t\t<RefVersionNumber>1.0</RefVersionNumber>\r\n\t</MessageDoc>\r\n\t<Party>\r\n\t\t<Participant>\r\n\t\t\t<Aggregator>\r\n\t\t\t\t<AggregatorID>88888888</AggregatorID>\r\n\t\t\t\t<Name>JR TECHNOLOGIES</Name>\r\n\t\t\t</Aggregator>\r\n\t\t</Participant>\r\n\t\t<Sender>\r\n\t\t\t<TravelAgency>\r\n\t\t\t\t<AgencyID>{{AGENCY_ID}}</AgencyID>\r\n\t\t\t\t<IATA_Number>12312312</IATA_Number>\r\n\t\t\t\t<Name>Gods Travel</Name>\r\n\t\t\t</TravelAgency>\r\n\t\t</Sender>\r\n\t</Party>\r\n\t<POS>\r\n\t\t<City>\r\n\t\t\t<IATA_LocationCode>ATH</IATA_LocationCode>\r\n\t\t</City>\r\n\t\t<Country>\r\n\t\t\t<CountryCode>GR</CountryCode>\r\n\t\t</Country>\r\n\t\t<RequestTime>2018-10-12T07:38:00</RequestTime>\r\n\t</POS>\r\n\t<Request>\r\n\t\t<OrderRefID>XXX1XT4G916</OrderRefID>\r\n\t\t<UpdateOrder>\r\n\t\t\t<!-- Update/Change Itinerary -->\r\n\t\t\t<ReshopOrder>\r\n\t\t\t\t<ServiceOrder>\r\n\t\t\t\t\t<AddOfferItems>\r\n\t\t\t\t\t\t<FlightCriteria>\r\n\t\t\t\t\t\t\t<SpecificOriginDestCriteria>\r\n\t\t\t\t\t\t\t\t<DestStationCode>BCN</DestStationCode>\r\n\t\t\t\t\t\t\t\t<OriginStationCode>CDG</OriginStationCode>\r\n\t\t\t\t\t\t\t\t<PaxJourney>\r\n\t\t\t\t\t\t\t\t\t<PaxSegment>\r\n\t\t\t\t\t\t\t\t\t\t<Arrival>\r\n\t\t\t\t\t\t\t\t\t\t\t<IATA_LocationCode>BCN</IATA_LocationCode>\r\n\t\t\t\t\t\t\t\t\t\t</Arrival>\r\n\t\t\t\t\t\t\t\t\t\t<Dep>\r\n\t\t\t\t\t\t\t\t\t\t\t<AircraftScheduledDateTime>2020-03-30T00:00:00</AircraftScheduledDateTime>\r\n\t\t\t\t\t\t\t\t\t\t\t<IATA_LocationCode>CDG</IATA_LocationCode>\r\n\t\t\t\t\t\t\t\t\t\t</Dep>\r\n\t\t\t\t\t\t\t\t\t\t<MarketingCarrierInfo>\r\n\t\t\t\t\t\t\t\t\t\t\t<CarrierDesigCode>{{AIRLINE_ID}}</CarrierDesigCode>\r\n\t\t\t\t\t\t\t\t\t\t\t<MarketingCarrierFlightNumberText/>\r\n\t\t\t\t\t\t\t\t\t\t</MarketingCarrierInfo>\r\n\t\t\t\t\t\t\t\t\t\t<OperatingCarrierInfo/>\r\n\t\t\t\t\t\t\t\t\t</PaxSegment>\r\n\t\t\t\t\t\t\t\t</PaxJourney>\r\n\t\t\t\t\t\t\t</SpecificOriginDestCriteria>\r\n\t\t\t\t\t\t\t<SpecificOriginDestCriteria>\r\n\t\t\t\t\t\t\t\t<DestStationCode>CDG</DestStationCode>\r\n\t\t\t\t\t\t\t\t<OriginStationCode>BCN</OriginStationCode>\r\n\t\t\t\t\t\t\t\t<PaxJourney>\r\n\t\t\t\t\t\t\t\t\t<PaxSegment>\r\n\t\t\t\t\t\t\t\t\t\t<Arrival>\r\n\t\t\t\t\t\t\t\t\t\t\t<IATA_LocationCode>CDG</IATA_LocationCode>\r\n\t\t\t\t\t\t\t\t\t\t</Arrival>\r\n\t\t\t\t\t\t\t\t\t\t<Dep>\r\n\t\t\t\t\t\t\t\t\t\t\t<AircraftScheduledDateTime>2020-04-05T00:00:00</AircraftScheduledDateTime>\r\n\t\t\t\t\t\t\t\t\t\t\t<IATA_LocationCode>BCN</IATA_LocationCode>\r\n\t\t\t\t\t\t\t\t\t\t</Dep>\r\n\t\t\t\t\t\t\t\t\t\t<MarketingCarrierInfo>\r\n\t\t\t\t\t\t\t\t\t\t\t<CarrierDesigCode>{{AIRLINE_ID}}</CarrierDesigCode>\r\n\t\t\t\t\t\t\t\t\t\t\t<MarketingCarrierFlightNumberText/>\r\n\t\t\t\t\t\t\t\t\t\t</MarketingCarrierInfo>\r\n\t\t\t\t\t\t\t\t\t\t<OperatingCarrierInfo/>\r\n\t\t\t\t\t\t\t\t\t</PaxSegment>\r\n\t\t\t\t\t\t\t\t</PaxJourney>\r\n\t\t\t\t\t\t\t</SpecificOriginDestCriteria>\r\n\t\t\t\t\t\t</FlightCriteria>\r\n\t\t\t\t\t</AddOfferItems>\r\n\t\t\t\t\t<DeleteOrderItem>\r\n\t\t\t\t\t\t<OrderItemRefID>ORDERITEM1</OrderItemRefID>\r\n\t\t\t\t\t</DeleteOrderItem>\r\n\t\t\t\t\t<DeleteOrderItem>\r\n\t\t\t\t\t\t<OrderItemRefID>ORDERITEM2</OrderItemRefID>\r\n\t\t\t\t\t</DeleteOrderItem>\r\n\t\t\t\t\t<DeleteOrderItem>\r\n\t\t\t\t\t\t<OrderItemRefID>ORDERITEM3</OrderItemRefID>\r\n\t\t\t\t\t</DeleteOrderItem>\r\n\t\t\t\t\t<DeleteOrderItem>\r\n\t\t\t\t\t\t<OrderItemRefID>ORDERITEM4</OrderItemRefID>\r\n\t\t\t\t\t</DeleteOrderItem>\r\n\t\t\t\t</ServiceOrder>\r\n\t\t\t</ReshopOrder>\r\n\t\t</UpdateOrder>\r\n\t</Request>\r\n</IATA_OrderReshopRQ>\r\n"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OrderChangeRQ",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_OrderChangeRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_OrderChangeRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <Request>\n        <ChangeOrder>\n            <UpdateOrderItem>\n                <AcceptOffer>\n                    <SelectedOffer>\n                        <OfferRefID>OFFER1</OfferRefID>\n                        <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n                        <SelectedOfferItem>\n                            <OfferItemRefID>OFFERITEM1_1</OfferItemRefID>\n                            <PaxRefID>SH1</PaxRefID>\n                        </SelectedOfferItem>\n                        <SelectedOfferItem>\n                            <OfferItemRefID>OFFERITEM1_2</OfferItemRefID>\n                            <PaxRefID>SH2</PaxRefID>\n                        </SelectedOfferItem>\n                        <ShoppingResponseRefID>107-63304e2f7b5f4f96bce362754483e960</ShoppingResponseRefID>\n                    </SelectedOffer>\n                    <SelectedOffer>\n                        <OfferRefID>OFFER4</OfferRefID>\n                        <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n                        <SelectedOfferItem>\n                            <OfferItemRefID>OFFERITEM4_1</OfferItemRefID>\n                            <PaxRefID>SH1</PaxRefID>\n                        </SelectedOfferItem>\n                        <SelectedOfferItem>\n                            <OfferItemRefID>OFFERITEM4_2</OfferItemRefID>\n                            <PaxRefID>SH2</PaxRefID>\n                        </SelectedOfferItem>\n                        <ShoppingResponseRefID>107-63304e2f7b5f4f96bce362754483e960</ShoppingResponseRefID>\n                    </SelectedOffer>\n                </AcceptOffer>\n            </UpdateOrderItem>\n        </ChangeOrder>\n        <DataLists>\n            <ContactInfoList>\n                <ContactInfo>\n                    <ContactInfoID>CNTCT_SH2</ContactInfoID>\n                    <EmailAddress>\n                        <EmailAddressText>j.smithas@mail.com</EmailAddressText>\n                    </EmailAddress>\n                </ContactInfo>\n                <ContactInfo>\n                    <ContactInfoID>CNTCT_SH1</ContactInfoID>\n                    <EmailAddress>\n                        <EmailAddressText>t.smithas@mail.com</EmailAddressText>\n                    </EmailAddress>\n                </ContactInfo>\n            </ContactInfoList>\n            <PaxList>\n                <Pax>\n                    <ContactInfoRefID>CNTCT_SH2</ContactInfoRefID>\n                    <Individual>\n                        <GenderCode>X</GenderCode>\n                        <GivenName>Johan</GivenName>\n                        <IndividualID>IND_SH2</IndividualID>\n                        <Surname>Smithas</Surname>\n                    </Individual>\n                    <PaxID>SH2</PaxID>\n                    <ProfileID_Text>117470969571579400</ProfileID_Text>\n                    <PTC>ADT</PTC>\n                </Pax>\n                <Pax>\n                    <ContactInfoRefID>CNTCT_SH1</ContactInfoRefID>\n                    <Individual>\n                        <GenderCode>X</GenderCode>\n                        <GivenName>Tom</GivenName>\n                        <IndividualID>IND_SH1</IndividualID>\n                        <Surname>Smithas</Surname>\n                    </Individual>\n                    <PaxID>SH1</PaxID>\n                    <ProfileID_Text>117470969554675300</ProfileID_Text>\n                    <PTC>ADT</PTC>\n                </Pax>\n            </PaxList>\n        </DataLists>\n        <Order>\n            <OrderID>XXX1XT4G916</OrderID>\n            <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n        </Order>\n        <PaymentFunctions>\n            <PaymentProcessingDetails>\n                <Amount CurCode=\" USD\">1522.82</Amount>\n                <Payer>\n                    <Individual>\n                        <GivenName>Johan</GivenName>\n                        <Surname>Smithas</Surname>\n                        <TitleName>Mr</TitleName>\n                    </Individual>\n                </Payer>\n                <PaymentMethod>\n                    <PaymentCard>\n                        <CardBrandCode>CA</CardBrandCode>\n                        <CardHolderName>Mr. Johan Smithas</CardHolderName>\n                        <CardSecurityCode>123</CardSecurityCode>\n                        <CardSeqNumber>4111111111111</CardSeqNumber>\n                        <ExpirationDate>1122</ExpirationDate>\n                    </PaymentCard>\n                </PaymentMethod>\n                <TypeCode>CC</TypeCode>\n            </PaymentProcessingDetails>\n        </PaymentFunctions>\n    </Request>\n</IATA_OrderChangeRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OrderChangeRQ - with aLaCarte",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_OrderChangeRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_OrderChangeRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <Request>\n        <ChangeOrder>\n            <UpdateOrderItem>\n                <AcceptOffer>\n                    <SelectedOffer>\n                        <OfferRefID>OFFER1</OfferRefID>\n                        <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n                        <SelectedOfferItem>\n                            <OfferItemRefID>OFFERITEM4_11_1</OfferItemRefID>\n                            <PaxRefID>Pax1</PaxRefID>\n                        </SelectedOfferItem>\n                        <SelectedOfferItem>\n                            <OfferItemRefID>OFFERITEM4_21_2</OfferItemRefID>\n                            <PaxRefID>Pax2</PaxRefID>\n                        </SelectedOfferItem>\n                        <ShoppingResponseRefID>107-c2907e436bd444da8ce59bba37651dd5</ShoppingResponseRefID>\n                    </SelectedOffer>\n                    <SelectedOffer>\n                        <OfferRefID>ALACARTEOFFER1</OfferRefID>\n                        <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n                        <!-- Add ALaCarte service-->\n                        <SelectedOfferItem>\n                            <OfferItemRefID>ALACARTEOFFERITEM1</OfferItemRefID>\n                            <PaxRefID>Pax1</PaxRefID>\n                            <SelectedALaCarteOfferItem>\n                                <FlightAssociations>\n                                    <PaxSegmentRefID>SEG_BCNCDG_3</PaxSegmentRefID>\n                                </FlightAssociations>\n                                <Qty>2</Qty>\n                            </SelectedALaCarteOfferItem>\n                        </SelectedOfferItem>\n                        <ShoppingResponseRefID>107-c2907e436bd444da8ce59bba37651dd5</ShoppingResponseRefID>\n                    </SelectedOffer>\n                </AcceptOffer>\n            </UpdateOrderItem>\n        </ChangeOrder>\n        <DataLists>\n            <ContactInfoList>\n                <ContactInfo>\n                    <ContactInfoID>Pax1_CNT</ContactInfoID>\n                    <EmailAddress>\n                        <EmailAddressText>j.smithas@mail.com</EmailAddressText>\n                    </EmailAddress>\n                </ContactInfo>\n                <ContactInfo>\n                    <ContactInfoID>Pax2_CNT</ContactInfoID>\n                    <EmailAddress>\n                        <EmailAddressText>t.smithas@mail.com</EmailAddressText>\n                    </EmailAddress>\n                </ContactInfo>\n            </ContactInfoList>\n            <PaxList>\n                <Pax>\n                    <ContactInfoRefID>Pax1_CNT</ContactInfoRefID>\n                    <Individual>\n                        <GivenName>Johan</GivenName>\n                        <IndividualID>IND_Pax1</IndividualID>\n                        <Surname>Smithas</Surname>\n                        <TitleName>Mr</TitleName>\n                    </Individual>\n                    <PaxID>Pax1</PaxID>\n                    <PTC>ADT</PTC>\n                </Pax>\n                <Pax>\n                    <ContactInfoRefID>Pax2_CNT</ContactInfoRefID>\n                    <Individual>\n                        <GivenName>Tom</GivenName>\n                        <IndividualID>IND_Pax2</IndividualID>\n                        <Surname>Smithas</Surname>\n                        <TitleName>Mr</TitleName>\n                    </Individual>\n                    <PaxID>Pax2</PaxID>\n                    <PTC>ADT</PTC>\n                </Pax>\n            </PaxList>\n            <PaxSegmentList>\n                <PaxSegment>\n                    <Arrival/>\n                    <Dep/>\n                    <MarketingCarrierInfo>\n                        <CarrierDesigCode>{{AIRLINE_ID}}</CarrierDesigCode>\n                        <MarketingCarrierFlightNumberText>049</MarketingCarrierFlightNumberText>\n                    </MarketingCarrierInfo>\n                    <PaxSegmentID>SEG_BCNCDG_3</PaxSegmentID>\n                </PaxSegment>\n            </PaxSegmentList>\n        </DataLists>\n        <Order>\n            <OrderID>XXXYUX7JJ1R</OrderID>\n            <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n        </Order>\n        <PaymentFunctions>\n            <PaymentProcessingDetails>\n                <Amount CurCode=\" USD\">1092.56</Amount>\n                <Payer>\n                    <Individual>\n                        <GivenName>Johan</GivenName>\n                        <Surname>Smithas</Surname>\n                        <TitleName>Mr</TitleName>\n                    </Individual>\n                </Payer>\n                <PaymentMethod>\n                    <PaymentCard>\n                        <CardBrandCode>CA</CardBrandCode>\n                        <CardHolderName>Mr. Johan Smithas</CardHolderName>\n                        <CardSecurityCode>123</CardSecurityCode>\n                        <CardSeqNumber>4111111111111</CardSeqNumber>\n                        <ExpirationDate>1122</ExpirationDate>\n                    </PaymentCard>\n                </PaymentMethod>\n                <TypeCode>CC</TypeCode>\n            </PaymentProcessingDetails>\n        </PaymentFunctions>\n    </Request>\n</IATA_OrderChangeRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "12 - OrderCancel - OrderRetrieve",
+			"item": [
+				{
+					"name": "OrderCancelRQ",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_OrderCancelRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_OrderCancelRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <PayloadAttributes>\n        <EchoTokenText>{{$guid}}</EchoTokenText>\n        <Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\n        <TrxID>transaction{{$randomInt}}</TrxID>\n        <VersionNumber>2019.2</VersionNumber>\n    </PayloadAttributes>\n    <POS>\n        <City>\n            <IATA_LocationCode>ATH</IATA_LocationCode>\n        </City>\n        <Country>\n            <CountryCode>GR</CountryCode>\n        </Country>\n        <RequestTime>2018-10-12T07:38:00</RequestTime>\n    </POS>\n    <Request>\n        <Order>\n            <OrderID>XXXYUX7JJ1R</OrderID>\n            <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n        </Order>\n    </Request>\n</IATA_OrderCancelRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OrderRetrieveRQ",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_OrderRetrieveRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_OrderRetrieveRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <PayloadAttributes>\n        <EchoTokenText>{{$guid}}</EchoTokenText>\n        <Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\n        <TrxID>transaction{{$randomInt}}</TrxID>\n        <VersionNumber>2019.2</VersionNumber>\n    </PayloadAttributes>\n    <POS>\n        <City>\n            <IATA_LocationCode>ATH</IATA_LocationCode>\n        </City>\n        <Country>\n            <CountryCode>GR</CountryCode>\n        </Country>\n        <RequestTime>2018-10-12T07:38:00</RequestTime>\n    </POS>\n    <Request>\n        <OrderFilterCriteria>\n            <Order>\n                <OrderID>XXXYUX7JJ1R</OrderID>\n                <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n            </Order>\n        </OrderFilterCriteria>\n    </Request>\n</IATA_OrderRetrieveRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "13 - OrderList",
+			"item": [
+				{
+					"name": "OrderListRQ - Creation Date Filter",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_OrderListRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_OrderListRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <PayloadAttributes>\n        <EchoTokenText>{{$guid}}</EchoTokenText>\n        <Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\n        <TrxID>transaction{{$randomInt}}</TrxID>\n        <VersionNumber>2019.2</VersionNumber>\n    </PayloadAttributes>\n    <POS>\n        <City>\n            <IATA_LocationCode>ATH</IATA_LocationCode>\n        </City>\n        <Country>\n            <CountryCode>GR</CountryCode>\n        </Country>\n        <RequestTime>2018-10-12T07:38:00</RequestTime>\n    </POS>\n    <Request>\n        <OrderFilterCriteria>\n            <CreationDateTimeFilterCriteria>\n                <FromDateTime>2020-01-01</FromDateTime>\n                <ToDateTime>2020-03-30</ToDateTime>\n            </CreationDateTimeFilterCriteria>\n        </OrderFilterCriteria>\n    </Request>\n</IATA_OrderListRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OrderListRQ - Travel Date Filter",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_OrderListRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_OrderListRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <PayloadAttributes>\n        <EchoTokenText>{{$guid}}</EchoTokenText>\n        <Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\n        <TrxID>transaction{{$randomInt}}</TrxID>\n        <VersionNumber>2019.2</VersionNumber>\n    </PayloadAttributes>\n    <POS>\n        <City>\n            <IATA_LocationCode>ATH</IATA_LocationCode>\n        </City>\n        <Country>\n            <CountryCode>GR</CountryCode>\n        </Country>\n        <RequestTime>2018-10-12T07:38:00</RequestTime>\n    </POS>\n    <Request>\n        <OrderFilterCriteria>\n            <TravelDateFilterCriteria>\n                <EffectiveDate>2020-01-01</EffectiveDate>\n                <ExpirationDate>2020-08-12</ExpirationDate>\n            </TravelDateFilterCriteria>\n        </OrderFilterCriteria>\n    </Request>\n</IATA_OrderListRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OrderListRQ - Airline Filter",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_OrderListRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_OrderListRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <PayloadAttributes>\n        <EchoTokenText>{{$guid}}</EchoTokenText>\n        <Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\n        <TrxID>transaction{{$randomInt}}</TrxID>\n        <VersionNumber>2019.2</VersionNumber>\n    </PayloadAttributes>\n    <POS>\n        <City>\n            <IATA_LocationCode>ATH</IATA_LocationCode>\n        </City>\n        <Country>\n            <CountryCode>GR</CountryCode>\n        </Country>\n        <RequestTime>2018-10-12T07:38:00</RequestTime>\n    </POS>\n    <Request>\n        <OrderFilterCriteria>\n            <CarrierFilterCriteria>\n                <AirlineDesigCode>{{AIRLINE_ID}}</AirlineDesigCode>\n            </CarrierFilterCriteria>\n        </OrderFilterCriteria>\n    </Request>\n</IATA_OrderListRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OrderListRQ - Passenger Filter",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_OrderListRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_OrderListRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <PayloadAttributes>\n        <EchoTokenText>{{$guid}}</EchoTokenText>\n        <Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\n        <TrxID>transaction{{$randomInt}}</TrxID>\n        <VersionNumber>2019.2</VersionNumber>\n    </PayloadAttributes>\n    <POS>\n        <City>\n            <IATA_LocationCode>ATH</IATA_LocationCode>\n        </City>\n        <Country>\n            <CountryCode>GR</CountryCode>\n        </Country>\n        <RequestTime>2018-10-12T07:38:00</RequestTime>\n    </POS>\n    <Request>\n        <OrderFilterCriteria>\n            <PaxFilterCriteria>\n                <ContactInfo>\n                    <EmailAddress>\n                        <EmailAddressText>j.smithas@mail.com</EmailAddressText>\n                    </EmailAddress>\n                </ContactInfo>\n                <Individual>\n                    <GivenName>Johan</GivenName>\n                    <Surname>Smithas</Surname>\n                </Individual>\n                <PaxID>Pax1</PaxID>\n                <ProfileID_Text>117110931717658400</ProfileID_Text> <!-- Add profile id if available -->\n            </PaxFilterCriteria>\n        </OrderFilterCriteria>\n    </Request>\n</IATA_OrderListRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "14 - ServiceList",
+			"item": [
+				{
+					"name": "ServiceListRQ  - OrderID",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_ServiceListRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_ServiceListRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <PayloadAttributes>\n        <EchoTokenText>{{$guid}}</EchoTokenText>\n        <Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\n        <TrxID>transaction{{$randomInt}}</TrxID>\n        <VersionNumber>2019.2</VersionNumber>\n    </PayloadAttributes>\n    <POS>\n        <City>\n            <IATA_LocationCode>ATH</IATA_LocationCode>\n        </City>\n        <Country>\n            <CountryCode>GR</CountryCode>\n        </Country>\n        <RequestTime>2018-10-12T07:38:00</RequestTime>\n    </POS>\n    <Request>\n        <CoreRequest>\n            <!-- Request ServiceList with OrderID -->\n            <Order>\n                <OrderID>XXXXPP1UFH4</OrderID>\n                <OrderItem> <!-- not used, schema mandatory -->\n                    <GrandTotalAmount>00.00</GrandTotalAmount>\n                    <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n                </OrderItem>\n                <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n            </Order>\n        </CoreRequest>\n    </Request>\n</IATA_ServiceListRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ServiceListRQ  - FlightSegment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_ServiceListRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_ServiceListRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <PayloadAttributes>\r\n\t\t<EchoTokenText>{{$guid}}</EchoTokenText>\r\n\t\t<Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\r\n\t\t<TrxID>transaction{{$randomInt}}</TrxID>\r\n\t\t<VersionNumber>2019.2</VersionNumber>\r\n\t</PayloadAttributes>\n    <POS>\n        <City>\n            <IATA_LocationCode>ATH</IATA_LocationCode>\n        </City>\n        <Country>\n            <CountryCode>GR</CountryCode>\n        </Country>\n        <RequestTime>2018-10-12T07:38:00</RequestTime>\n    </POS>\n    <Request>\n        <CoreRequest>\n            <OriginDest>\n                <DestStationCode/>\n                <OriginStationCode/>\n                <PaxJourney>\n                    <PaxSegment>\n                        <Arrival>\n                            <AircraftScheduledDateTime TimeZoneCode=\" USDope/Paris\">2020-06-20T09:27:00.000</AircraftScheduledDateTime>\n                            <IATA_LocationCode>CDG</IATA_LocationCode>\n                        </Arrival>\n                        <Dep>\n                           <AircraftScheduledDateTime TimeZoneCode=\" USDope/Madrid\">2020-06-20T07:50:00.000</AircraftScheduledDateTime>\n                    \t\t <IATA_LocationCode>BCN</IATA_LocationCode>\n                        </Dep>\n                        <MarketingCarrierInfo>\n                            <CarrierDesigCode>{{AIRLINE_ID}}</CarrierDesigCode>\n                            <MarketingCarrierFlightNumberText>049</MarketingCarrierFlightNumberText>\n                        </MarketingCarrierInfo>\n                    </PaxSegment>\n                </PaxJourney>\n            </OriginDest>\n        </CoreRequest>\n        <Pax>\n            <PaxID>Pax1</PaxID>\n            <PTC>ADT</PTC>\n        </Pax>\n        <ShoppingCriteria>\n            <CabinTypeCriteria>\n                <CabinTypeCode>M</CabinTypeCode>\n            </CabinTypeCriteria>\n        </ShoppingCriteria>\n    </Request>\n</IATA_ServiceListRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ServiceListRQ  - OrderID with SSR",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_ServiceListRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_ServiceListRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <PayloadAttributes>\n        <EchoTokenText>{{$guid}}</EchoTokenText>\n        <Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\n        <TrxID>transaction{{$randomInt}}</TrxID>\n        <VersionNumber>2019.2</VersionNumber>\n    </PayloadAttributes>\n    <POS>\n        <City>\n            <IATA_LocationCode>ATH</IATA_LocationCode>\n        </City>\n        <Country>\n            <CountryCode>GR</CountryCode>\n        </Country>\n        <RequestTime>2018-10-12T07:38:00</RequestTime>\n    </POS>\n    <Request>\n        <CoreRequest>\n            <!-- Request ServiceList with OrderID -->\n            <Order>\n                <OrderID>XXXTUMGPNAG</OrderID>\n                <OrderItem> <!-- not used, schema mandatory -->\n                    <GrandTotalAmount>00.00</GrandTotalAmount>\n                    <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n                </OrderItem>\n                <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n            </Order>\n        </CoreRequest>\n        <ShoppingCriteria>\n            <CabinTypeCriteria>\n                <CabinTypeCode>M</CabinTypeCode>\n            </CabinTypeCriteria>\n            <SpecialNeedsCriteria>\n                <SpecialServiceCode>DEAF</SpecialServiceCode>\n            </SpecialNeedsCriteria>\n        </ShoppingCriteria>\n    </Request>\n</IATA_ServiceListRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ServiceListRQ  - FlightSegment with SSR",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_ServiceListRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_ServiceListRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <PayloadAttributes>\r\n\t\t<EchoTokenText>{{$guid}}</EchoTokenText>\r\n\t\t<Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\r\n\t\t<TrxID>transaction{{$randomInt}}</TrxID>\r\n\t\t<VersionNumber>2019.2</VersionNumber>\r\n\t</PayloadAttributes>\n    <POS>\n        <City>\n            <IATA_LocationCode>ATH</IATA_LocationCode>\n        </City>\n        <Country>\n            <CountryCode>GR</CountryCode>\n        </Country>\n        <RequestTime>2018-10-12T07:38:00</RequestTime>\n    </POS>\n    <Request>\n        <CoreRequest>\n            <OriginDest>\n                <DestStationCode/>\n                <OriginStationCode/>\n                <PaxJourney>\n                    <PaxSegment>\n                        <Arrival>\n                            <AircraftScheduledDateTime TimeZoneCode=\" USDope/Paris\">2020-06-20T09:27:00.000</AircraftScheduledDateTime>\n                            <IATA_LocationCode>CDG</IATA_LocationCode>\n                        </Arrival>\n                        <Dep>\n                           <AircraftScheduledDateTime TimeZoneCode=\" USDope/Madrid\">2020-06-20T07:50:00.000</AircraftScheduledDateTime>\n                    \t\t <IATA_LocationCode>BCN</IATA_LocationCode>\n                        </Dep>\n                        <MarketingCarrierInfo>\n                            <CarrierDesigCode>{{AIRLINE_ID}}</CarrierDesigCode>\n                            <MarketingCarrierFlightNumberText>049</MarketingCarrierFlightNumberText>\n                        </MarketingCarrierInfo>\n                    </PaxSegment>\n                </PaxJourney>\n            </OriginDest>\n        </CoreRequest>\n        <Pax>\n            <PaxID>Pax1</PaxID>\n            <PTC>ADT</PTC>\n        </Pax>\n         <ShoppingCriteria>\n             <CabinTypeCriteria>\n                 <CabinTypeCode>M</CabinTypeCode>\n             </CabinTypeCriteria>         \t\n             <SpecialNeedsCriteria>\n\t\t\t\t<SpecialServiceCode>DEAF</SpecialServiceCode>\n             </SpecialNeedsCriteria>\n         </ShoppingCriteria>\t\t\n    </Request>\n</IATA_ServiceListRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "15 - SeatAvailability",
+			"item": [
+				{
+					"name": "SeatAvailabilityRQ  - With Flight",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<IATA_SeatAvailabilityRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_SeatAvailabilityRQ\">\r\n\t<MessageDoc>\r\n\t\t<Name>NDC GATEWAY</Name>\r\n\t\t<RefVersionNumber>1.0</RefVersionNumber>\r\n\t</MessageDoc>\r\n\t<Party>\r\n\t\t<Sender>\r\n\t\t\t<TravelAgency>\r\n\t\t\t\t<AgencyID>{{AGENCY_ID}}</AgencyID>\r\n\t\t\t\t<IATA_Number>12312312</IATA_Number>\r\n\t\t\t</TravelAgency>\r\n\t\t</Sender>\r\n\t</Party>\r\n\t<PayloadAttributes>\r\n\t\t<EchoTokenText>{{$guid}}</EchoTokenText>\r\n\t\t<Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\r\n\t\t<TrxID>transaction{{$randomInt}}</TrxID>\r\n\t\t<VersionNumber>2019.2</VersionNumber>\r\n\t</PayloadAttributes>\r\n\t<POS>\r\n\t\t<City>\r\n\t\t\t<IATA_LocationCode>ATH</IATA_LocationCode>\r\n\t\t</City>\r\n\t\t<Country>\r\n\t\t\t<CountryCode>GR</CountryCode>\r\n\t\t</Country>\r\n\t\t<RequestTime>2018-10-12T07:38:00</RequestTime>\r\n\t</POS>\r\n\t<Request>\r\n\t\t<CoreRequest>\r\n            <PaxSegment>\r\n                <Arrival>\r\n                    <AircraftScheduledDateTime TimeZoneCode=\" USDope/Paris\">2020-06-20T09:27:00.000</AircraftScheduledDateTime>\r\n                    <IATA_LocationCode>CDG</IATA_LocationCode>\r\n                </Arrival>\r\n                <Dep>\r\n                    <AircraftScheduledDateTime TimeZoneCode=\" USDope/Madrid\">2020-06-20T07:50:00.000</AircraftScheduledDateTime>\r\n            \t\t <IATA_LocationCode>BCN</IATA_LocationCode>\r\n                </Dep>\r\n                <MarketingCarrierInfo>\r\n                    <CarrierDesigCode>{{AIRLINE_ID}}</CarrierDesigCode>\r\n                    <MarketingCarrierFlightNumberText>049</MarketingCarrierFlightNumberText>\r\n                </MarketingCarrierInfo>\r\n            </PaxSegment>\r\n\t\t</CoreRequest>\r\n\t\t<Pax>\r\n\t\t\t<PaxID>Pax01</PaxID>\r\n\t\t\t<PTC>ADT</PTC>\r\n\t\t</Pax>\r\n\t</Request>\r\n</IATA_SeatAvailabilityRQ>\r\n"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SeatAvailabilityRQ  - With OrderID",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_SeatAvailabilityRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_SeatAvailabilityRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <PayloadAttributes>\n        <EchoTokenText>{{$guid}}</EchoTokenText>\n        <Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\n        <TrxID>transaction{{$randomInt}}</TrxID>\n        <VersionNumber>2019.2</VersionNumber>\n    </PayloadAttributes>\n    <POS>\n        <City>\n            <IATA_LocationCode>ATH</IATA_LocationCode>\n        </City>\n        <Country>\n            <CountryCode>GR</CountryCode>\n        </Country>\n        <RequestTime>2018-10-12T07:38:00</RequestTime>\n    </POS>\n    <Request>\n        <CoreRequest>\n            <!-- Request SeatAvailability with OrderID or with BookingRef-->\n            <Order>\n                <OrderID>XXX3K3UJ6SB</OrderID>\n                <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n            </Order>\n        </CoreRequest>\n        <Pax>\n            <PaxID>Pax01</PaxID>\n            <PTC>ADT</PTC>\n        </Pax>\n    </Request>\n</IATA_SeatAvailabilityRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "16 - OneOrder 18.2",
+			"item": [
+				{
+					"name": "UpdateServiceNotifRQ",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_UpdateServiceNotifRQ xmlns=\"http://www.iata.org/IATA/2015/00/2018.2/IATA_UpdateServiceNotifRQ\">\n\t<Party>\n\t\t<Sender>\n\t\t\t<TravelAgency>\n\t\t\t\t<AgencyID>{{AGENCY_ID}}</AgencyID>\n\t\t\t\t<IATANumber>12312312</IATANumber>\n\t\t\t\t<Name>JR TECHNOLOGIES</Name>\n\t\t\t</TravelAgency>\n\t\t</Sender>\n\t</Party>\n\t<PayloadAttributes>\n\t\t<EchoTokenText>{{$guid}}</EchoTokenText>\n\t\t<Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\n\t\t<TrxID>transaction{{$randomInt}}</TrxID>\n\t\t<VersionNumber>2018.2</VersionNumber>\n\t</PayloadAttributes>\n\t<Request>\n\t\t<Order>\n\t\t\t<OrderID>XXX5QE84QLX</OrderID>\n\t\t\t<OrderItem>\n\t\t\t\t<OrderItemID>ORDERITEM1</OrderItemID>\n\t\t\t\t<Service>\n\t\t\t\t\t<DeliveryProvider>\n\t\t\t\t\t\t<ID>{{AIRLINE_ID}}</ID>\n\t\t\t\t\t\t<Name>God</Name>\n\t\t\t\t\t</DeliveryProvider>\n\t\t\t\t\t<DeliveryStatusCode>READY TO DELIVER</DeliveryStatusCode>\n\t\t\t\t\t<ServiceID>SV_1_1_SV_BCN_3000_EFO_Pax1_SEG_BCNCDG_4_Pax1_XXX5QE84QLX_8262970d-f320-4ce7-a53a-33bdc7e6935c</ServiceID>\n\t\t\t\t</Service>\n\t\t\t</OrderItem>\n\t\t</Order>\n\t</Request>\n</IATA_UpdateServiceNotifRQ>\n"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ServiceDeliveryRQ",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<IATA_ServiceDeliveryRQ xmlns=\"http://www.iata.org/IATA/2015/00/2018.2/IATA_ServiceDeliveryRQ\">\r\n\t<PayloadAttributes>\r\n\t\t<EchoTokenText>{{$guid}}</EchoTokenText>\r\n\t\t<Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\r\n\t\t<TrxID>transaction{{$randomInt}}</TrxID>\r\n\t\t<VersionNumber>2018.2</VersionNumber>\r\n\t</PayloadAttributes>\r\n\t<Request>\r\n\t\t<PaxSegment>\r\n\t\t\t<OperatingCarrierInfo>\r\n\t\t\t\t<CarrierDesigCode>{{AIRLINE_ID}}</CarrierDesigCode>\r\n\t\t\t\t<DatedOperatingLeg>\r\n\t\t\t\t\t<Arrival>\r\n\t\t\t\t\t\t<IATALocationCode>FRA</IATALocationCode>\r\n\t\t\t\t\t</Arrival>\r\n\t\t\t\t\t<Dep>\r\n\t\t\t\t\t\t<AircraftScheduledDateTime>2019-03-26T11:50:00</AircraftScheduledDateTime>\r\n\t\t\t\t\t\t<IATALocationCode>LHR</IATALocationCode>\r\n\t\t\t\t\t</Dep>\r\n\t\t\t\t</DatedOperatingLeg>\r\n\t\t\t</OperatingCarrierInfo>\r\n\t\t</PaxSegment>\r\n\t</Request>\r\n</IATA_ServiceDeliveryRQ>\r\n"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ServiceDeliveryRQ - flight number",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<IATA_ServiceDeliveryRQ xmlns=\"http://www.iata.org/IATA/2015/00/2018.2/IATA_ServiceDeliveryRQ\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n\t<PayloadAttributes>\r\n\t\t<EchoTokenText>{{$guid}}</EchoTokenText>\r\n\t\t<Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\r\n\t\t<TrxID>transaction{{$randomInt}}</TrxID>\r\n\t\t<VersionNumber>2018.2</VersionNumber>\r\n\t</PayloadAttributes>\r\n\t<Request>\r\n\t\t<PaxSegment>\r\n\t\t\t<OperatingCarrierInfo>\r\n\t\t\t\t<CarrierDesigCode>{{AIRLINE_ID}}</CarrierDesigCode>\r\n\t\t\t\t<DatedOperatingLeg>\r\n\t\t\t\t\t<Arrival>\r\n\t\t\t\t\t\t<IATALocationCode>FRA</IATALocationCode>\r\n\t\t\t\t\t</Arrival>\r\n\t\t\t\t\t<Dep>\r\n\t\t\t\t\t\t<AircraftScheduledDateTime>2019-03-26T11:50:00</AircraftScheduledDateTime>\r\n\t\t\t\t\t</Dep>\r\n\t\t\t\t</DatedOperatingLeg>\r\n\t\t\t\t<OperatingCarrierFlightNumberText>168</OperatingCarrierFlightNumberText>\r\n\t\t\t</OperatingCarrierInfo>\r\n\t\t</PaxSegment>\r\n\t</Request>\r\n</IATA_ServiceDeliveryRQ>\r\n"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ServiceStatusChangeNotifRQ",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<IATA_ServiceStatusChangeNotifRQ xmlns=\"http://www.iata.org/IATA/2015/00/2018.2/IATA_ServiceStatusChangeNotifRQ\">\r\n\t<Party>\r\n\t\t<Sender>\r\n\t\t\t<TravelAgency>\r\n\t\t\t\t<AgencyID>{{AGENCY_ID}}</AgencyID>\r\n\t\t\t\t<IATANumber>12312312</IATANumber>\r\n\t\t\t\t<Name>JR TECHNOLOGIES</Name>\r\n\t\t\t</TravelAgency>\r\n\t\t</Sender>\r\n\t</Party>\r\n\t<PayloadAttributes>\r\n\t\t<EchoTokenText>{{$guid}}</EchoTokenText>\r\n\t\t<Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\r\n\t\t<TrxID>transaction{{$randomInt}}</TrxID>\r\n\t\t<VersionNumber>2018.2</VersionNumber>\r\n\t</PayloadAttributes>\r\n\t<Request>\r\n\t\t<Order>\r\n\t\t\t<OrderID>XXX5QE84QLX</OrderID>\r\n\t\t\t<OrderItem>\r\n\t\t\t\t<OrderItemID>ORDERITEM1</OrderItemID>\r\n\t\t\t\t<Service>\r\n\t\t\t\t\t<DeliveryProvider>\r\n\t\t\t\t\t\t<ID>{{AIRLINE_ID}}</ID>\r\n\t\t\t\t\t\t<Name>Gods Air</Name>\r\n\t\t\t\t\t</DeliveryProvider>\r\n\t\t\t\t\t<DeliveryStatusCode>IN PROGRESS</DeliveryStatusCode>\r\n\t\t\t\t\t<ServiceID>SV_1_1_SV_BCN_3000_EFO_Pax1_SEG_BCNCDG_4_Pax1_XXX5QE84QLX_8262970d-f320-4ce7-a53a-33bdc7e6935c</ServiceID>\r\n\t\t\t\t</Service>\r\n\t\t\t</OrderItem>\r\n\t\t</Order>\r\n\t</Request>\r\n</IATA_ServiceStatusChangeNotifRQ>\r\n"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OrderSalesInformationRequest - Order Snapshot",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}/OrderSalesInformationNotif/2582e80059694898a22cf459dad2d336",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							],
+							"path": [
+								"OrderSalesInformationNotif",
+								"2582e80059694898a22cf459dad2d336"
+							]
+						},
+						"description": "###### This is a snapshot of the delivered OSIN message after the order Creation. Use the transaction ID of a previous OrderViewRS message"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "17 - OneWay 1ADT with SSR",
+			"item": [
+				{
+					"name": "AirShoppingRQ - with SSR",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<IATA_AirShoppingRQ\r\nxmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_AirShoppingRQ\">\r\n     <MessageDoc>\r\n         <RefVersionNumber>1.0</RefVersionNumber>\r\n     </MessageDoc>\r\n     <Party>\r\n         <Participant>\r\n             <Aggregator>\r\n                 <AggregatorID>88888888</AggregatorID>\r\n                 <Name>JR TECHNOLOGIES</Name>\r\n             </Aggregator>\r\n         </Participant>\r\n         <Sender>\r\n             <TravelAgency>\r\n                 <AgencyID>{{AGENCY_ID}}</AgencyID>\r\n                 <IATA_Number>12312312</IATA_Number>\r\n                 <Name>Gods Travel</Name>\r\n             </TravelAgency>\r\n         </Sender>\r\n     </Party>\r\n     <PayloadAttributes>\r\n\t\t<EchoTokenText>{{$guid}}</EchoTokenText>\r\n\t\t<Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\r\n\t\t<TrxID>transaction{{$randomInt}}</TrxID>\r\n\t\t<VersionNumber>2019.2</VersionNumber>\r\n\t</PayloadAttributes>\r\n     <POS>\r\n         <City>\r\n\t\t\t<IATA_LocationCode>ATH</IATA_LocationCode>\r\n         </City>\r\n         <Country>\r\n             <CountryCode>GR</CountryCode>\r\n         </Country>\r\n\t\t <RequestTime>2018-10-12T07:38:00</RequestTime>\r\n     </POS>\r\n     <Request>\r\n         <FlightCriteria>\r\n             <OriginDestCriteria>\r\n                 <DestArrivalCriteria>\r\n\t\t\t\t\t<IATA_LocationCode>DXB</IATA_LocationCode>\r\n                 </DestArrivalCriteria>\r\n                 <OriginDepCriteria>\r\n                     <Date>2020-06-20</Date> <IATA_LocationCode>BCN</IATA_LocationCode>\r\n                 </OriginDepCriteria>\r\n             </OriginDestCriteria>\r\n         </FlightCriteria>\r\n         <Paxs>\r\n             <Pax>\r\n                 <PaxID>Pax1</PaxID>\r\n                 <PTC>ADT</PTC>\r\n             </Pax>\r\n         </Paxs>\r\n         <ShoppingCriteria>\r\n             <CabinTypeCriteria>\r\n                 <CabinTypeCode>M</CabinTypeCode>\r\n             </CabinTypeCriteria>\r\n             <SpecialNeedsCriteria>\r\n\t\t\t\t<SpecialServiceCode>WCHS</SpecialServiceCode>\r\n             </SpecialNeedsCriteria>\r\n         </ShoppingCriteria>\r\n     </Request>\r\n</IATA_AirShoppingRQ>\r\n"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OfferPriceRQ - with SSR",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<IATA_OfferPriceRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_OfferPriceRQ\">\r\n\t<MessageDoc>\r\n\t\t\t<RefVersionNumber>1.0</RefVersionNumber>\r\n\t</MessageDoc>\r\n\t<Party>\r\n\t\t<Participant>\r\n\t\t\t<Aggregator>\r\n\t\t\t\t<AggregatorID>88888888</AggregatorID>\r\n\t\t\t\t<Name>JR TECHNOLOGIES</Name>\r\n\t\t\t</Aggregator>\r\n\t\t</Participant>\r\n\t\t<Sender>\r\n\t\t\t<TravelAgency>\r\n\t\t\t\t<AgencyID>{{AGENCY_ID}}</AgencyID>\r\n\t\t\t\t<IATA_Number>12312312</IATA_Number>\r\n\t\t\t\t<Name>Gods Travel</Name>\r\n\t\t\t</TravelAgency>\r\n\t\t</Sender>\r\n\t</Party>\r\n\t<POS>\r\n\t\t<City>\r\n\t\t\t<IATA_LocationCode>ATH</IATA_LocationCode>\r\n\t\t</City>\r\n\t\t<Country>\r\n\t\t\t<CountryCode>GR</CountryCode>\r\n\t\t</Country>\r\n\t\t<RequestTime>2018-10-12T07:38:00</RequestTime>\r\n\t</POS>\r\n\t<Request>\r\n\t\t<DataLists>\r\n\t\t\t<PaxList>\r\n\t\t\t\t<Pax>\r\n\t\t\t\t\t<Individual>\r\n\t\t\t\t\t\t<GivenName>Johan</GivenName>\r\n\t\t\t\t\t\t<Surname>Smithas</Surname>\r\n\t\t\t\t\t\t<TitleName>Mr</TitleName>\r\n\t\t\t\t\t</Individual>\r\n\t\t\t\t\t<LoyaltyProgramAccount>\r\n\t\t\t\t\t\t<AccountNumber>1234525525</AccountNumber>\r\n\t\t\t\t\t</LoyaltyProgramAccount>\r\n\t\t\t\t\t<PaxID>Pax1</PaxID>\r\n\t\t\t\t\t<PTC>ADT</PTC>\r\n\t\t\t\t</Pax>\r\n\t\t\t</PaxList>\r\n\t\t</DataLists>\r\n\t\t<PricedOffer>\r\n\t\t\t<SelectedOffer>\r\n\t\t\t\t<OfferRefID>OFFER1</OfferRefID>\r\n\t\t\t\t<OwnerCode>{{AIRLINE_ID}}</OwnerCode>\r\n\t\t\t\t<SelectedOfferItem>\r\n\t\t\t\t\t<OfferItemRefID>OFFERITEM1_1</OfferItemRefID>\r\n\t\t\t\t\t<PaxRefID>Pax1</PaxRefID>\r\n\t\t\t\t</SelectedOfferItem>\r\n\t\t\t\t<ShoppingResponseRefID>201-e517dd8fd3864775a7299f030bc8c13a</ShoppingResponseRefID>\r\n\t\t\t</SelectedOffer>\r\n\t\t</PricedOffer>\r\n         <ShoppingCriteria>\r\n             <CabinTypeCriteria>\r\n                 <CabinTypeCode>M</CabinTypeCode>\r\n             </CabinTypeCriteria>\r\n             <SpecialNeedsCriteria>\r\n\t\t\t\t<SpecialServiceCode>WCHS</SpecialServiceCode>\r\n             </SpecialNeedsCriteria>\r\n         </ShoppingCriteria>\t\t\r\n\t</Request>\r\n</IATA_OfferPriceRQ>\r\n"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OrderCreateRQ - with SSR",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_OrderCreateRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_OrderCreateRQ\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n\t<MessageDoc>\n\t\t\t<RefVersionNumber>1.0</RefVersionNumber>\n\t</MessageDoc>\n\t<Party>\n\t\t<Participant>\n\t\t\t<Aggregator>\n\t\t\t\t<AggregatorID>88888888</AggregatorID>\n\t\t\t\t<Name>JR TECHNOLOGIES</Name>\n\t\t\t</Aggregator>\n\t\t</Participant>\n\t\t<Sender>\n\t\t\t<TravelAgency>\n\t\t\t\t<AgencyID>{{AGENCY_ID}}</AgencyID>\n\t\t\t\t<IATA_Number>12312312</IATA_Number>\n\t\t\t\t<Name>Gods Travel</Name>\n\t\t\t</TravelAgency>\n\t\t</Sender>\n\t</Party>\n\t<POS>\n\t\t<City>\n\t\t\t<IATA_LocationCode>ATH</IATA_LocationCode>\n\t\t</City>\n\t\t<Country>\n\t\t\t<CountryCode>GR</CountryCode>\n\t\t</Country>\n\t\t<RequestTime>2018-10-12T07:38:00</RequestTime>\n\t</POS>\n\t<Request>\n\t\t<CreateOrder>\n\t\t\t<SelectedOffer>\n\t\t\t\t<OfferRefID>OFFER1</OfferRefID>\n\t\t\t\t<OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n\t\t\t\t<SelectedOfferItem>\n\t\t\t\t\t<OfferItemRefID>OFFERITEM1_1</OfferItemRefID>\n\t\t\t\t\t<PaxRefID>Pax1</PaxRefID>\n\t\t\t\t</SelectedOfferItem>\n\t\t\t\t<ShoppingResponseRefID>213-7d51f37eda8b4cff8f081c8a01cbec68</ShoppingResponseRefID>\n\t\t\t</SelectedOffer>\n\t\t\t<SelectedOffer>\n\t\t\t\t<OfferRefID>ALACARTEOFFER1</OfferRefID>\n\t\t\t\t<OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n\t\t\t\t<SelectedOfferItem>\n\t\t\t\t\t<OfferItemRefID>ALACARTEOFFERITEM6</OfferItemRefID>\n\t\t\t\t\t<PaxRefID>Pax1</PaxRefID>\n\t\t\t\t\t<SelectedBundleServices>\n\t\t\t\t\t\t<SelectedServiceDefinitionRefID>SV_3000_ERO</SelectedServiceDefinitionRefID>\n\t\t\t\t\t\t<SelectedServiceRefID/>\n\t\t\t\t\t</SelectedBundleServices>\n\t\t\t\t</SelectedOfferItem>\n\t\t\t\t<ShoppingResponseRefID>201-7d51f37eda8b4cff8f081c8a01cbec68</ShoppingResponseRefID>\n\t\t\t</SelectedOffer>\n\t\t</CreateOrder>\n\t\t<DataLists>\n\t\t\t<ContactInfoList>\n\t\t\t\t<ContactInfo>\n\t\t\t\t\t<ContactInfoID>Pax1_CNT</ContactInfoID>\n\t\t\t\t\t<EmailAddress>\n\t\t\t\t\t\t<EmailAddressText>j.smithas@mail.com</EmailAddressText>\n\t\t\t\t\t</EmailAddress>\n\t\t\t\t</ContactInfo>\n\t\t\t\t<ContactInfo>\n\t\t\t\t\t<ContactInfoID>Pax2_CNT</ContactInfoID>\n\t\t\t\t\t<EmailAddress>\n\t\t\t\t\t\t<EmailAddressText>t.smithas@mail.com</EmailAddressText>\n\t\t\t\t\t</EmailAddress>\n\t\t\t\t</ContactInfo>\n\t\t\t</ContactInfoList>\n\t\t\t<PaxList>\n\t\t\t\t<Pax>\n\t\t\t\t\t<ContactInfoRefID>Pax1_CNT</ContactInfoRefID>\n\t\t\t\t\t<Individual>\n\t\t\t\t\t\t<GivenName>Johan</GivenName>\n\t\t\t\t\t\t<IndividualID>IND_Pax1</IndividualID>\n\t\t\t\t\t\t<Surname>Smithas</Surname>\n\t\t\t\t\t\t<TitleName>Mr</TitleName>\n\t\t\t\t\t</Individual>\n\t\t\t\t\t<LoyaltyProgramAccount>\n\t\t\t\t\t\t<AccountNumber>00034642464</AccountNumber>\n\t\t\t\t\t\t<LoyaltyProgram/>\n\t\t\t\t\t</LoyaltyProgramAccount>\n\t\t\t\t\t<PaxID>Pax1</PaxID>\n\t\t\t\t\t<PTC>ADT</PTC>\n\t\t\t\t</Pax>\n\t\t\t</PaxList>\n\t\t\t<ServiceDefinitionList>\n\t\t\t\t<ServiceDefinition>\n\t\t\t\t\t<Desc/>\n\t\t\t\t\t<Name> </Name>\n\t\t\t\t\t<ServiceDefinitionID>SV_3006_ERO</ServiceDefinitionID>\n\t\t\t\t\t<SpecialService>\n\t\t\t\t\t\t<FreeText>{\"totalLinear\": {\"value\": 4,\"uom\": \"m\"},\"weight\": {\"value\": 32.5,\"uom\": \"kg\"}, \"freeText\": \"test text\"}</FreeText>\n\t\t\t\t\t\t<Qty>1</Qty>\n\t\t\t\t\t\t<SpecialServiceCode>WCHS</SpecialServiceCode>\n\t\t\t\t\t</SpecialService>\n\t\t\t\t</ServiceDefinition>\n\t\t\t</ServiceDefinitionList>\n\t\t</DataLists>\n\t\t<PaymentFunctions>\n\t\t\t<PaymentProcessingDetails>\n\t\t\t\t<Amount CurCode=\" USD\">990.23</Amount>\n\t\t\t\t<PaymentMethod>\n\t\t\t\t\t<Cash/>\n\t\t\t\t</PaymentMethod>\n\t\t\t\t<TypeCode>CA</TypeCode>\n\t\t\t</PaymentProcessingDetails>\n\t\t</PaymentFunctions>\n\t</Request>\n</IATA_OrderCreateRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						},
+						"description": "## if the SpecialService/FreeText element is provided it must be in a json format as in the request bellow\n* Available elements \"totalLinear\", \"weight\", \"freeText\"\n\n * totalLinear: value is number and uom one of [m,in,ft]\n * weight: value is number and uom one of [kg,lb]\n * freeText: plain text"
+					},
+					"response": []
+				},
+				{
+					"name": "OrderCreateRQ - with SSR and alaCarte",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_OrderCreateRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_OrderCreateRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <POS>\n        <City>\n            <IATA_LocationCode>ATH</IATA_LocationCode>\n        </City>\n        <Country>\n            <CountryCode>GR</CountryCode>\n        </Country>\n        <RequestTime>2018-10-12T07:38:00</RequestTime>\n    </POS>\n    <Request>\n        <CreateOrder>\n            <SelectedOffer>\n                <OfferRefID>OFFER1</OfferRefID>\n                <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n                <SelectedOfferItem>\n                    <OfferItemRefID>OFFERITEM1_1</OfferItemRefID>\n                    <PaxRefID>Pax1</PaxRefID>\n                </SelectedOfferItem>\n                <ShoppingResponseRefID>201-e779f17d24e24896b84c841663f94a26</ShoppingResponseRefID>\n            </SelectedOffer>\n            <SelectedOffer>\n                <OfferRefID>ALACARTEOFFER1</OfferRefID>\n                <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n                <SelectedOfferItem>\n                    <OfferItemRefID>ALACARTEOFFERITEM2</OfferItemRefID>\n                    <PaxRefID>Pax1</PaxRefID>\n                    <SelectedALaCarteOfferItem>\n                        <FlightAssociations>\n                            <PaxSegmentRefID>SEG_BCNCDG_4</PaxSegmentRefID>\n                        </FlightAssociations>\n                        <Qty>1</Qty>\n                    </SelectedALaCarteOfferItem>\n                </SelectedOfferItem>\n                <SelectedOfferItem>\n                    <OfferItemRefID>ALACARTEOFFERITEM1</OfferItemRefID>\n                    <PaxRefID>Pax1</PaxRefID>\n                    <SelectedBundleServices>\n                        <SelectedServiceDefinitionRefID>SV_LHR_3000_EFO</SelectedServiceDefinitionRefID>\n                        <SelectedServiceRefID/>\n                    </SelectedBundleServices>\n                </SelectedOfferItem>\n                <ShoppingResponseRefID>201-e779f17d24e24896b84c841663f94a26</ShoppingResponseRefID>\n            </SelectedOffer>\n        </CreateOrder>\n        <DataLists>\n            <ContactInfoList>\n                <ContactInfo>\n                    <ContactInfoID>Pax1_CNT</ContactInfoID>\n                    <EmailAddress>\n                        <EmailAddressText>j.smithas@mail.com</EmailAddressText>\n                    </EmailAddress>\n                </ContactInfo>\n                <ContactInfo>\n                    <ContactInfoID>Pax2_CNT</ContactInfoID>\n                    <EmailAddress>\n                        <EmailAddressText>t.smithas@mail.com</EmailAddressText>\n                    </EmailAddress>\n                </ContactInfo>\n            </ContactInfoList>\n            <PaxList>\n                <Pax>\n                    <ContactInfoRefID>Pax1_CNT</ContactInfoRefID>\n                    <Individual>\n                        <GivenName>Johan</GivenName>\n                        <IndividualID>IND_Pax1</IndividualID>\n                        <Surname>Smithas</Surname>\n                        <TitleName>Mr</TitleName>\n                    </Individual>\n                    <LoyaltyProgramAccount>\n                        <AccountNumber>00034642464</AccountNumber>\n                        <LoyaltyProgram/>\n                    </LoyaltyProgramAccount>\n                    <PaxID>Pax1</PaxID>\n                    <PTC>ADT</PTC>\n                </Pax>\n                <Pax>\n                    <ContactInfoRefID>Pax2_CNT</ContactInfoRefID>\n                    <Individual>\n                        <Birthdate>2015-11-22</Birthdate>\n                        <GenderCode>M</GenderCode>\n                        <GivenName>Tom</GivenName>\n                        <IndividualID>IND_Pax2</IndividualID>\n                        <Surname>Smithas</Surname>\n                    </Individual>\n                    <PaxID>Pax2</PaxID>\n                    <PTC>CHD</PTC>\n                </Pax>\n            </PaxList>\n            <ServiceDefinitionList>\n                <ServiceDefinition>\n                    <Desc/>\n                    <Name> </Name>\n                    <ServiceDefinitionID>SV_LHR_3000_EFO</ServiceDefinitionID>\n                    <SpecialService>\n                        <FreeText>{\"freeText\": \"test text\"}</FreeText>\n                        <Qty>1</Qty>\n                        <SpecialServiceCode>DEAF</SpecialServiceCode>\n                    </SpecialService>\n                </ServiceDefinition>\n            </ServiceDefinitionList>\n        </DataLists>\n        <PaymentFunctions>\n            <PaymentProcessingDetails>\n                <Amount CurCode=\" USD\">473.29</Amount>\n                <PaymentMethod>\n                    <Cash/>\n                </PaymentMethod>\n                <TypeCode>CA</TypeCode>\n            </PaymentProcessingDetails>\n        </PaymentFunctions>\n    </Request>\n</IATA_OrderCreateRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						},
+						"description": "## if the SpecialService/FreeText element is provided it must be in a json format as in the request bellow\n* Available elements \"totalLinear\", \"weight\", \"freeText\"\n\n * totalLinear: value is number and uom one of [m,in,ft]\n * weight: value is number and uom one of [kg,lb]\n * freeText: plain text"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "18 - OrderChange - Add SSR",
+			"item": [
+				{
+					"name": "ServiceListRQ  - OrderID",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_ServiceListRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_ServiceListRQ\">\n    <MessageDoc>\n        <RefVersionNumber>1.0</RefVersionNumber>\n    </MessageDoc>\n    <Party>\n        <Participant>\n            <Aggregator>\n                <AggregatorID>88888888</AggregatorID>\n                <Name>JR TECHNOLOGIES</Name>\n            </Aggregator>\n        </Participant>\n        <Sender>\n            <TravelAgency>\n                <AgencyID>{{AGENCY_ID}}</AgencyID>\n                <IATA_Number>12312312</IATA_Number>\n                <Name>Gods Travel</Name>\n            </TravelAgency>\n        </Sender>\n    </Party>\n    <PayloadAttributes>\n        <EchoTokenText>{{$guid}}</EchoTokenText>\n        <Timestamp>2001-12-17T09:30:47+05:00</Timestamp>\n        <TrxID>transaction{{$randomInt}}</TrxID>\n        <VersionNumber>2019.2</VersionNumber>\n    </PayloadAttributes>\n    <POS>\n        <City>\n            <IATA_LocationCode>ATH</IATA_LocationCode>\n        </City>\n        <Country>\n            <CountryCode>GR</CountryCode>\n        </Country>\n        <RequestTime>2018-10-12T07:38:00</RequestTime>\n    </POS>\n    <Request>\n        <CoreRequest>\n            <!-- Request ServiceList with OrderID -->\n            <Order>\n                <OrderID>XXXKBMVEWER</OrderID>\n                <OrderItem> <!-- not used,  schema mandatory -->\n                    <GrandTotalAmount>00.00</GrandTotalAmount>\n                    <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n                </OrderItem>\n                <OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n            </Order>\n        </CoreRequest>\n        <ShoppingCriteria>\n            <CabinTypeCriteria>\n                <CabinTypeCode>M</CabinTypeCode>\n            </CabinTypeCriteria>\n            <SpecialNeedsCriteria>\n                <SpecialServiceCode>DEAF</SpecialServiceCode>\n            </SpecialNeedsCriteria>\n        </ShoppingCriteria>\n    </Request>\n</IATA_ServiceListRQ>"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OrderChangeRQ - with SSR",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Authorization-Key",
+								"value": "{{API_KEY}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<IATA_OrderChangeRQ xmlns=\"http://www.iata.org/IATA/2015/00/2019.2/IATA_OrderChangeRQ\">\n\t<MessageDoc>\n\t\t\t<RefVersionNumber>1.0</RefVersionNumber>\n\t</MessageDoc>\n\t<Party>\n\t\t<Participant>\n\t\t\t<Aggregator>\n\t\t\t\t<AggregatorID>88888888</AggregatorID>\n\t\t\t\t<Name>JR TECHNOLOGIES</Name>\n\t\t\t</Aggregator>\n\t\t</Participant>\n\t\t<Sender>\n\t\t\t<TravelAgency>\n\t\t\t\t<AgencyID>{{AGENCY_ID}}</AgencyID>\n\t\t\t\t<IATA_Number>12312312</IATA_Number>\n\t\t\t\t<Name>Gods Travel</Name>\n\t\t\t</TravelAgency>\n\t\t</Sender>\n\t</Party>\n\t<Request>\n\t\t<ChangeOrder>\n\t\t\t<UpdateOrderItem>\n\t\t\t\t<AcceptOffer>\n\t\t\t\t\t<SelectedOffer>\n\t\t\t\t\t\t<OfferRefID>ALACARTEOFFER1</OfferRefID>\n\t\t\t\t\t\t<OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n\t\t\t\t\t\t<!-- Add SSR service-->\n\t\t\t\t\t\t<SelectedOfferItem>\n\t\t\t\t\t\t\t<OfferItemRefID>ALACARTEOFFERITEM7</OfferItemRefID>\n\t\t\t\t\t\t\t<PaxRefID>Pax1</PaxRefID>\n\t\t\t\t\t\t\t<SelectedBundleServices>\n\t\t\t\t\t\t\t\t<SelectedServiceDefinitionRefID>SV_3000_ERO</SelectedServiceDefinitionRefID>\n\t\t\t\t\t\t\t\t<SelectedServiceRefID/>\n\t\t\t\t\t\t\t</SelectedBundleServices>\n\t\t\t\t\t\t</SelectedOfferItem>\n\t\t\t\t\t\t<ShoppingResponseRefID>217-3e9f7320ac7247a9b3d6d998f36c96f3</ShoppingResponseRefID>\n\t\t\t\t\t</SelectedOffer>\n\t\t\t\t</AcceptOffer>\n\t\t\t</UpdateOrderItem>\n\t\t</ChangeOrder>\n\t\t<DataLists>\n\t\t\t<ContactInfoList>\n\t\t\t\t<ContactInfo>\n\t\t\t\t\t<ContactInfoID>Pax1_CNT</ContactInfoID>\n\t\t\t\t\t<EmailAddress>\n\t\t\t\t\t\t<EmailAddressText>j.smithas@mail.com</EmailAddressText>\n\t\t\t\t\t</EmailAddress>\n\t\t\t\t</ContactInfo>\n\t\t\t</ContactInfoList>\n\t\t\t<PaxList>\n\t\t\t\t<Pax>\n\t\t\t\t\t<ContactInfoRefID>Pax1_CNT</ContactInfoRefID>\n\t\t\t\t\t<Individual>\n\t\t\t\t\t\t<GivenName>Johan</GivenName>\n\t\t\t\t\t\t<IndividualID>IND_Pax1</IndividualID>\n\t\t\t\t\t\t<Surname>Smithas</Surname>\n\t\t\t\t\t\t<TitleName>Mr</TitleName>\n\t\t\t\t\t</Individual>\n\t\t\t\t\t<LoyaltyProgramAccount>\n\t\t\t\t\t\t<AccountNumber>00034642464</AccountNumber>\n\t\t\t\t\t\t<LoyaltyProgram/>\n\t\t\t\t\t</LoyaltyProgramAccount>\n\t\t\t\t\t<PaxID>Pax1</PaxID>\n\t\t\t\t\t<PTC>ADT</PTC>\n\t\t\t\t</Pax>\n\t\t\t</PaxList>\t\n\t\t\t<ServiceDefinitionList>\n\t\t\t\t<ServiceDefinition>\n\t\t\t\t\t<Desc/>\n\t\t\t\t\t<Name> </Name>\n\t\t\t\t\t<ServiceDefinitionID>SV_3000_ERO</ServiceDefinitionID>\n\t\t\t\t\t<SpecialService>\n\t\t\t\t\t\t<!--<FreeText>{\"dimensions\": {\"total linear\": 4,\"uom\": \"m\"},\"weight\": {\"value\": 32.5,\"uom\": \"kg\"}}</FreeText>-->\n\t\t\t\t\t\t<Qty>1</Qty>\n\t\t\t\t\t\t<SpecialServiceCode>DEAF</SpecialServiceCode>\n\t\t\t\t\t</SpecialService>\n\t\t\t\t</ServiceDefinition>\n\t\t\t</ServiceDefinitionList>            \n\t\t</DataLists>\n\t\t<Order>\n\t\t\t<OrderID>XXXTPJ1R6NE</OrderID>\n\t\t\t<OwnerCode>{{AIRLINE_ID}}</OwnerCode>\n\t\t</Order>\n\t\t<PaymentFunctions>\n\t\t\t<PaymentProcessingDetails>\n\t\t\t\t<Amount CurCode=\" USD\">0.00</Amount>\n\t\t\t\t<PaymentMethod>\n\t\t\t\t\t<Cash/>\n\t\t\t\t</PaymentMethod>\n\t\t\t\t<TypeCode>CA</TypeCode>\n\t\t\t</PaymentProcessingDetails>\n\t\t</PaymentFunctions>\n\t</Request>\n</IATA_OrderChangeRQ>\n"
+						},
+						"url": {
+							"raw": "{{NDC_ENDPOINT}}",
+							"host": [
+								"{{NDC_ENDPOINT}}"
+							]
+						},
+						"description": "## if the SpecialService/FreeText element is provided it must be in a json format as in the request bellow\n* Available elements \"totalLinear\", \"weight\", \"freeText\"\n\n * totalLinear: value is number and uom one of [m,in,ft]\n * weight: value is number and uom one of [kg,lb]\n * freeText: plain text"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
